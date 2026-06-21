@@ -27,6 +27,7 @@ function Home() {
         <HeroCarousel />
         <CategoryBannerSection />
         <FeaturedProducts />
+        "FAHH"
         <NewProducts />
         <BestPrice />
       </section>
