@@ -31,6 +31,37 @@ export const generatedData = {
             }
           ]
         }
+      },
+      {
+        "name": "femei",
+        "visible": true,
+        "seo": {
+          "name": "Femei",
+          "description": "sfghgfhdfgh",
+          "media": {
+            "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
+          }
+        },
+        "media": {
+          "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
+        },
+        "sub_categories_connection": {
+          "nodes": [
+            {
+              "name": "tricou-femei",
+              "seo": {
+                "name": "fiyfyify",
+                "description": "eutdjd",
+                "media": {
+                  "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
+                }
+              },
+              "media": {
+                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
+              }
+            }
+          ]
+        }
       }
     ]
   },
@@ -39,6 +70,10 @@ export const generatedData = {
       {
         "color_code": "#000000",
         "name": "negru"
+      },
+      {
+        "color_code": "#ffffff",
+        "name": "alb"
       }
     ]
   },
