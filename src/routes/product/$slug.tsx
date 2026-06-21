@@ -12,7 +12,6 @@ import VariantSelector from '#/features/Products/components/variant-selector'
 import { getProductBySlug } from '#/features/Products/functions/product.function'
 import type { ProductVariant } from '#/features/Products/type'
 import { seo } from '#/lib/seo'
-import { getStrapiMedia } from '#/lib/utils'
 import { createFileRoute, getRouteApi, notFound } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
 
@@ -48,7 +47,7 @@ export const Route = createFileRoute('/product/$slug')({
             ...seo({
                 title: `${loaderData?.name} | ${site.name}`,
                 description: loaderData?.seo?.description || "",
-                image: getStrapiMedia(loaderData?.seo?.media?.url) || ""
+                image: loaderData?.seo?.media?.url || ""
             })
         ]
     }),
