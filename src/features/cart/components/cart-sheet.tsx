@@ -71,7 +71,7 @@ export default function CartSheet() {
             <SheetContent className="flex flex-col w-full sm:max-w-md p-6">
                 <SheetHeader className="pb-4 border-b">
                     <SheetTitle className="flex items-center gap-2">
-                        Shopping Cart ({items.length} {items.length === 1 ? 'item' : 'items'})
+                        Shopping Cart s ({items.length} {items.length === 1 ? 'item' : 'items'})
                         {isAnyLoading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
                     </SheetTitle>
                 </SheetHeader>
