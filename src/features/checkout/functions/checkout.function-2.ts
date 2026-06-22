@@ -89,8 +89,9 @@ export const createOrder = async (data: OrderFields) => {
     const emailHtml = await render(OrderEmail({
         brandName: site.name,
         customerName: session.user.name,
+
         items: items,
-        orderDate: "",
+        orderDate: newOrder.createdAt.toLocaleDateString(),
         orderNumber: "98",
         subtotal: subtotal,
         shippingCost: 0,
