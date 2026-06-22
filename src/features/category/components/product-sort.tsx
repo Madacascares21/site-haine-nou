@@ -42,7 +42,7 @@ export function ProductSort() {
                     onValueChange={(value) => updateSearch({ sortBy: value })}
                 >
                     <SelectTrigger
-                        className="w-40 bg-white"
+                        className="w-40"
                         aria-labelledby="sortBy"
                     >
                         <SelectValue placeholder="Select..." />

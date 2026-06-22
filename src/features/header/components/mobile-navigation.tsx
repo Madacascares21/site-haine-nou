@@ -39,7 +39,7 @@ export const MobileNavigation = () => {
                     {/* Brand Logo & Header Section */}
                     <SheetHeader className="text-left pb-4 border-b">
                         <SheetTitle asChild>
-                            <BrandLink/>
+                            <BrandLink />
                         </SheetTitle>
                     </SheetHeader>
 
@@ -52,7 +52,9 @@ export const MobileNavigation = () => {
                                 return (
                                     <Link
                                         key={item.label}
-                                        to={item.to}
+                                        to={item.to as "/c/$category/{-$subCategory}"}
+                                        params={{ category: item.label }}
+
                                         className="rounded-md px-3 py-2.5 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
                                     >
                                         {item.label}
@@ -71,7 +73,8 @@ export const MobileNavigation = () => {
                                         {(item.children ?? []).map((child) => (
                                             <Link
                                                 key={child.label}
-                                                to={child.to}
+                                                to={item.to as "/c/$category/{-$subCategory}"}
+                                                params={{ category: item.label, subCategory: child.label }}
                                                 className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                                             >
                                                 {child.label}

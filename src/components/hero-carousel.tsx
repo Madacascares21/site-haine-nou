@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Carousel,
   CarouselContent,
@@ -8,22 +8,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Container from "./container"
+import { Link } from "@tanstack/react-router"
 
 // 1. Define the TypeScript interface for your slide data
-interface SlideData {
-  id: string
-  title: string
-  description: string
-  cta: string
-}
+
 
 // Mock data generation
-const slides: SlideData[] = Array.from({ length: 1 }, () => ({
-  id: "assfaf",
-  title: "Vara asta tu surprinzi pe toata lumea",
-  description: "Haine trendy pentru ati arata toate formele",
-  cta: faker.helpers.arrayElement(["Learn More", "Get Started", "Shop Now", "Discover"]),
-}))
+
 
 // 2. Create the Custom Slide Component
 // const CustomSlide = ({ slide }: { slide: SlideData }) => {
@@ -76,12 +67,12 @@ const slides: SlideData[] = Array.from({ length: 1 }, () => ({
 //   )
 // }
 
-const CustomSlide = ({ slide }: { slide: SlideData }) => {
+const CustomSlide = () => {
   return (
-    <div className="relative h-[700px] w-full overflow-hidden rounded-3xl border bg-gradient-to-br from-background via-background to-muted/40">
+    <div className="relative min-h-max  w-full overflow-hidden  border bg-gradient-to-br from-background via-background to-muted/40">
 
 
-      <Container className="relative z-10 flex h-full items-center justify-between gap-12">
+      <Container className="relative py-20 z-10 flex flex-col md:flex-row h-full items-center justify-between gap-12">
 
         {/* Left content */}
         <div className="flex-1 max-w-xl">
@@ -89,61 +80,37 @@ const CustomSlide = ({ slide }: { slide: SlideData }) => {
           {/* Badge */}
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border bg-background/60 px-4 py-2 text-sm backdrop-blur-xl">
             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-            New Collection Available
+            Colectie Noua Limitata
           </div>
 
 
           {/* Title */}
           <h1 className="text-5xl font-black tracking-tight md:text-7xl leading-[0.95]">
-            {slide.title}
+            Vara asta tu <span className="text-primary">surprinzi</span> pe toata lumea!
           </h1>
 
 
           {/* Description */}
           <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-            {slide.description}
+            Haine trandy si alese special pentru tine pentru a fi cea mai buna varianta a ta!
           </p>
 
 
-          {/* Stats */}
-          {/* <div className="mt-8 flex gap-6">
 
-            <div className="rounded-2xl border bg-background/60 px-5 py-4 backdrop-blur-xl">
-              <p className="text-2xl font-bold">4.9★</p>
-              <p className="text-xs text-muted-foreground">
-                Customer Rating
-              </p>
-            </div>
-
-            <div className="rounded-2xl border bg-background/60 px-5 py-4 backdrop-blur-xl">
-              <p className="text-2xl font-bold">
-                10K+
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Orders Sold
-              </p>
-            </div>
-
-          </div> */}
 
 
           {/* Buttons */}
           <div className="mt-8 flex gap-4">
 
-            <Button
-              size="lg"
-              className="rounded-full px-8 shadow-xl transition hover:scale-105"
+            <Link
+              to="/c/$category/{-$subCategory}"
+              params={{ category: "produse-noi" }}
+              className={buttonVariants({ variant: "default", className: "rounded-xl px-8" })}
             >
               Shop Now
-            </Button>
+            </Link>
 
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full px-8"
-            >
-              View Details
-            </Button>
+
 
           </div>
 
@@ -152,11 +119,11 @@ const CustomSlide = ({ slide }: { slide: SlideData }) => {
 
 
         {/* Product showcase */}
-        <div className="relative flex-1 h-full flex items-center justify-center">
+        <div className="relative flex-1 h-full flex items-center justify-center pb-8">
 
 
           {/* Discount card */}
-          <div className="absolute right-0 top-24 z-20 rounded-2xl border bg-background/80 px-5 py-4 shadow-xl backdrop-blur-xl">
+          <div className="absolute hidden md:block right-0 top-24 z-20 rounded-2xl border bg-background/80 px-5 py-4 shadow-xl backdrop-blur-xl">
             <p className="text-sm text-muted-foreground">
               Limited Offer
             </p>
@@ -172,11 +139,11 @@ const CustomSlide = ({ slide }: { slide: SlideData }) => {
 
             <div className="absolute inset-0 rounded-[40px] bg-primary/20 blur-3xl" />
 
-            <div className="relative h-[420px] w-[420px] overflow-hidden rounded-[40px] border bg-background shadow-2xl">
+            <div className="relative h-60 w-60   md:h-105 md:w-105 overflow-hidden rounded-[40px] border bg-background shadow-2xl">
 
               <img
-                src={"http://localhost:1337/uploads/a2183884_2832_4f4c_90d6_8e7f547a86ba_83be8e757a.png"}
-                alt={slide.title}
+                src={"https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"}
+                // alt={slide.title}
                 className="
               h-full
               w-full
@@ -192,7 +159,7 @@ const CustomSlide = ({ slide }: { slide: SlideData }) => {
 
 
             {/* Floating product info */}
-            <div className="absolute -bottom-8 -left-10 w-64 rounded-3xl border bg-background/90 p-5 shadow-2xl backdrop-blur-xl">
+            <div className="absolute -bottom-8 -left-10 w-64 rounded-3xl border bg-background/90 p-5 shadow-2xl backdrop-blur-xl zoom-75">
 
               <p className="text-sm text-muted-foreground">
                 Featured Product
@@ -236,12 +203,10 @@ const HeroCarousel = () => {
     <div className="">
       <Carousel className="w-full">
         <CarouselContent>
-          {slides.map((slide) => (
-            <CarouselItem key={slide.id}>
-              {/* Render your custom slide component here */}
-              <CustomSlide slide={slide} />
-            </CarouselItem>
-          ))}
+          <CarouselItem >
+            {/* Render your custom slide component here */}
+            <CustomSlide />
+          </CarouselItem>
         </CarouselContent>
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />

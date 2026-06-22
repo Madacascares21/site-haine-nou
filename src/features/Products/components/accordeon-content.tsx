@@ -21,7 +21,7 @@ export function ProductDetailsAccordion({ description, variantSku }: ProductDeta
                 </AccordionTrigger>
 
                 <AccordionContent className="text-sm  leading-relaxed pb-4">
-                    <div className="dark prose prose-sm max-w-none">
+                    <div className="dark prose-headings:text-white prose-sm max-w-none">
                         <article className="text-muted-foreground">
                             <Markdown>{description || "Nu există o descriere disponibilă pentru acest produs în acest moment."}</Markdown>
                         </article>

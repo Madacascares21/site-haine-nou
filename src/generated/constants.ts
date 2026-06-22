@@ -74,6 +74,10 @@ export const generatedData = {
       {
         "color_code": "#ffffff",
         "name": "alb"
+      },
+      {
+        "color_code": "#ff0000",
+        "name": "rosu"
       }
     ]
   },
@@ -81,6 +85,15 @@ export const generatedData = {
     "nodes": [
       {
         "name": "XS"
+      },
+      {
+        "name": "S"
+      },
+      {
+        "name": "M"
+      },
+      {
+        "name": "L"
       }
     ]
   }
