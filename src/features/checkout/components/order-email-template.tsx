@@ -14,6 +14,7 @@ import {
   Section,
   Text,
 } from "@react-email/components";
+import { formatPrice } from "#/lib/utils";
 
 // --- Types & Interfaces ---
 
@@ -66,8 +67,7 @@ export interface OrderConfirmationEmailProps {
 
 // --- Utilities & Child Components ---
 
-const fmt = (currency: string, value: number): string =>
-  `${Number(value).toFixed(2)} ${currency}`; // Adjusted for European standard positioning (e.g., 525.60 €)
+
 
 interface ClothingPlaceholderProps {
   bg?: string;
@@ -101,10 +101,9 @@ const MetaCell: React.FC<MetaCellProps> = ({ label, value }) => (
 
 interface OrderItemProps {
   item: OrderItemType;
-  currency: string;
 }
 
-const OrderItem: React.FC<OrderItemProps> = ({ item, currency }) => (
+const OrderItem: React.FC<OrderItemProps> = ({ item }) => (
   <Row style={{ padding: "16px 0" }}>
     <Column width="80">
       {item.imageUrl ? (
@@ -130,7 +129,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ item, currency }) => (
 
     <Column align="right">
       <Text style={styles.value}>
-        {fmt(currency, item.price * item.qty)}
+        {formatPrice(item.price * item.qty)}
       </Text>
     </Column>
   </Row>
@@ -169,7 +168,6 @@ export default function OrderEmail({
   orderDate = "22 iunie 2026",
   estimatedDelivery = "27–30 iunie 2026",
   customerName = "Alex Ionescu",
-  currency = "€",
   subtotal = 438,
   shippingCost = 0,
   taxRate = 0.19, // Adjusted to Romania's standard standard VAT (19%)
@@ -237,7 +235,6 @@ export default function OrderEmail({
               <OrderItem
                 key={item.id}
                 item={item}
-                currency={currency}
               />
             ))}
 
@@ -252,13 +249,13 @@ export default function OrderEmail({
               </Column>
 
               <Column align="right">
-                <Text>{fmt(currency, subtotal)}</Text>
+                <Text>{formatPrice(subtotal)}</Text>
                 <Text>
-                  {shippingCost ? fmt(currency, shippingCost) : "Gratuită"}
+                  {shippingCost ? formatPrice(shippingCost) : "Gratuită"}
                 </Text>
-                <Text>{fmt(currency, tax)}</Text>
+                <Text>{formatPrice(tax)}</Text>
                 <Text style={styles.total}>
-                  {fmt(currency, total)}
+                  {formatPrice(total)}
                 </Text>
               </Column>
             </Row>
