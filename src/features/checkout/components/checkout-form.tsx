@@ -49,7 +49,7 @@ export function CheckoutForm() {
             if (response.success) {
                 toast.success(response.message)
                 navigate({
-                    to: '/',
+                    to: '/order',
                     reloadDocument: true
                 });
             } else {

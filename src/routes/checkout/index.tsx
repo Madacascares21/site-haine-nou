@@ -1,16 +1,15 @@
 import CheckoutPage from '#/features/checkout/components/checkout-page'
-import { isAuthenticated } from '#/lib/auth.functions'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/checkout/')({
-    beforeLoad: () => isAuthenticated(),
-
+    beforeLoad: async () => await requireAuth(),
     component: CheckoutPage,
-    pendingComponent: () => <CheckoutSkeleton/>
+    pendingComponent: () => <CheckoutSkeleton />
 })
 
 
 import { Skeleton } from "@/components/ui/skeleton"
+import { requireAuth } from '#/lib/auth.functions'
 
 export default function CheckoutSkeleton() {
     return (

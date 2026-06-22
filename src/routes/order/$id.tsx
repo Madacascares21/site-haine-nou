@@ -1,9 +1,11 @@
 import OrderDetailsPage from '#/features/order/components/order-page'
 import { getOrderServerFn } from '#/features/order/server/order'
+import { requireAuth } from '#/lib/auth.functions';
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/order/$id')({
     component: RouteComponent,
+    beforeLoad: async () => await requireAuth(),
     // validateSearch: orderSearchSchema,
     loader: async ({ params }) => {
         const id = Number(params.id);

@@ -1,20 +1,18 @@
-import * as React from "react";
+import { formatPrice } from "#/lib/utils";
 import {
   Body,
-  Button,
   Column,
   Container,
   Head,
   Hr,
   Html,
   Img,
-  Link,
   Preview,
   Row,
   Section,
-  Text,
+  Text
 } from "@react-email/components";
-import { formatPrice } from "#/lib/utils";
+import * as React from "react";
 
 // --- Types & Interfaces ---
 
@@ -58,11 +56,7 @@ export interface OrderConfirmationEmailProps {
   items?: OrderItemType[];
   shippingAddress?: ShippingAddressType;
   payment?: PaymentType;
-  trackingUrl?: string;
-  supportUrl?: string;
-  privacyUrl?: string;
-  returnsUrl?: string;
-  unsubscribeUrl?: string;
+
 }
 
 // --- Utilities & Child Components ---
@@ -163,7 +157,6 @@ const DEFAULT_ITEMS: OrderItemType[] = [
 export default function OrderEmail({
   brandName = "ARKT",
   brandTagline = "STUDIO",
-  brandAddress = "Calea Victoriei 22, București, România",
   orderNumber = "ORD-2026-88471",
   orderDate = "22 iunie 2026",
   estimatedDelivery = "27–30 iunie 2026",
@@ -183,11 +176,6 @@ export default function OrderEmail({
     method: "Visa",
     last4: "4291",
   },
-  trackingUrl = "#",
-  supportUrl = "#",
-  privacyUrl = "#",
-  returnsUrl = "#",
-  unsubscribeUrl = "#",
 }: OrderConfirmationEmailProps) {
   const firstName = customerName.split(" ")[0];
   const tax = subtotal * taxRate;
@@ -292,19 +280,19 @@ export default function OrderEmail({
             </Row>
 
             <Section style={{ textAlign: "center", marginTop: 25 }}>
-              <Button
+              {/* <Button
                 href={trackingUrl}
                 style={styles.button}
               >
                 Urmărește comanda
-              </Button>
+              </Button> */}
 
-              <Text>
+              {/* <Text>
                 Ai nevoie de ajutor?{" "}
                 <Link href={supportUrl}>
                   Contactează asistența
                 </Link>
-              </Text>
+              </Text> */}
             </Section>
           </Section>
 
@@ -313,17 +301,9 @@ export default function OrderEmail({
               {brandName}
             </Text>
 
-            <Text style={styles.muted}>
+            {/* <Text style={styles.muted}>
               {brandAddress}
-            </Text>
-
-            <Text>
-              <Link href={privacyUrl}>Confidențialitate</Link>
-              {" · "}
-              <Link href={returnsUrl}>Retururi</Link>
-              {" · "}
-              <Link href={unsubscribeUrl}>Dezabonare</Link>
-            </Text>
+            </Text> */}
           </Section>
 
         </Container>

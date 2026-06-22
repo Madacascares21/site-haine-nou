@@ -220,7 +220,9 @@ export default function CartSheet() {
                             <Button variant="outline" onClick={clear} className="flex-1">
                                 Clear
                             </Button>
-                            <Link to="/checkout" className={cn(buttonVariants({ variant: "default" }), "flex-1")} disabled={subtotal === 0}>
+                            <Link to="/checkout" onClick={() => {
+                                closeCart()
+                            }} className={cn(buttonVariants({ variant: "default" }), "flex-1")} disabled={subtotal === 0}>
                                 Checkout
                             </Link>
                         </div>

@@ -10,13 +10,17 @@ export const getSession = createServerFn({ method: "GET" }).handler(async () => 
     return session;
 });
 
-export const isAuthenticated = createServerFn({ method: "GET" }).handler(async () => {
-    const session = getSession();
+export async function requireAuth() {
+    const session = await getSession()
+
     if (!session) {
-        throw redirect({ to: "/sign-in" });
+        throw redirect({
+            to: "/sign-in",
+        })
     }
-    return session;
-});
+
+    return session
+}
 
 export const ensureSession = createServerFn({ method: "GET" }).handler(async () => {
     const headers = getRequestHeaders();
