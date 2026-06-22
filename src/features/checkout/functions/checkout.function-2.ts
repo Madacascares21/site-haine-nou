@@ -4,7 +4,11 @@ import { documentIdToProductsServerFn } from "#/features/Products/functions/prod
 import { getSession } from "#/lib/auth.functions";
 import { eq } from "drizzle-orm";
 import type { OrderFields } from "../type";
-
+import OrderEmail from "../components/order-email-template"
+// import { createElement } from 'react';
+import { sendEmail } from "#/lib/nodemailer";
+import { render } from "@react-email/components";
+import type { ReactNode } from "react";
 export const createOrder = async (data: OrderFields) => {
 
 
@@ -65,6 +69,16 @@ export const createOrder = async (data: OrderFields) => {
 
 
     await db.delete(cartItems).where(eq(cartItems.userId, session.user.id));
+
+
+    const emailHtml = await render(OrderEmail({}));
+    await sendEmail({
+        subject: " Comanda ta a fost inregistrata cu success",
+        text: "",
+        to: session.user.email,
+        html: emailHtml
+    })
+
 
 
     return newOrder;

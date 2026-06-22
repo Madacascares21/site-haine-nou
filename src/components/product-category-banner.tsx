@@ -1,5 +1,6 @@
 import { navigation } from "#/features/header/constant";
 import { getStrapiMedia } from "#/lib/utils";
+import { Link } from "@tanstack/react-router";
 import Container from "./container";
 import {
     Tabs,
@@ -10,15 +11,20 @@ import {
 
 function CategoryGrid({
     items,
+    gender
 }: {
     items: NonNullable<(typeof navigation)[number]["children"]>;
+    gender: string
 }) {
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
             {items.map((cat) => (
-                <a
+                <Link
                     key={cat.label}
-                    href="#"
+                    to="/c/$category/{-$subCategory}"
+                    params={{
+                        category: gender, subCategory: cat.label
+                    }}
                     className="relative group overflow-hidden rounded-2xl h-40 md:h-56 bg-gray-900"
                 >
                     {cat.image && (
@@ -40,7 +46,7 @@ function CategoryGrid({
                             Explore →
                         </span>
                     </div>
-                </a>
+                </Link>
             ))}
         </div>
     );
@@ -69,7 +75,7 @@ export default function CategoryBannerSection() {
 
                     {tabs.map((tab) => (
                         <TabsContent key={tab.label} value={tab.label}>
-                            <CategoryGrid items={tab.children ?? []} />
+                            <CategoryGrid items={tab.children ?? []} gender={tab.label} />
                         </TabsContent>
                     ))}
                 </Tabs>
