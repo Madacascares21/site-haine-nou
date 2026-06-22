@@ -13,6 +13,7 @@ import { CartAuthSync } from '#/features/cart/CartAuthSync'
 import Header from '#/features/header/components/header'
 import { site } from '#/features/header/constant'
 import type { QueryClient } from '@tanstack/react-query'
+import { seo } from '#/lib/seo'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -28,15 +29,36 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      {
-        title: site.name,
-      },
+      ...seo({
+        title:
+          `${site.name}`,
+        description: `Descoperă cele mai adorabile hăinuțe de Crăciun pentru animăluțul tău!
+De la pulovere pufoase și costumașe de Moș Crăciun, până la accesorii festive perfecte pentru poze, găsești tot ce ai nevoie ca să transformi sărbătorile într-o poveste. Confort, stil și multă magie pentru căței și pisici fericiți.`,
+        image: "/banner.jpg",
+        keywords: "haine pentru animale cu tematică de Crăciun"
+      }),
     ],
     links: [
+      { rel: 'stylesheet', href: appCss },
       {
-        rel: 'stylesheet',
-        href: appCss,
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
       },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
+      },
+      { rel: 'manifest', href: '/site.webmanifest', color: '#fffff' },
+      { rel: 'icon', href: '/favicon.ico' },
     ],
   }),
   shellComponent: RootDocument,

@@ -16,9 +16,11 @@ const BestPrice = () => {
 
 
     return (
+        <section>
         <ProductCarouselLayout label="Promotii" subCategory="promotii" category="colectii">
             <CarouselProductList data={data} isPending={isPending} />
         </ProductCarouselLayout>
+        </section>
     );
 }
 

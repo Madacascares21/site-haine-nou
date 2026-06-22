@@ -16,9 +16,11 @@ const NewProducts = () => {
 
 
     return (
-        <ProductCarouselLayout label="Produse Noi" category="produse-noi">
-            <CarouselProductList data={data} isPending={isPending} />
-        </ProductCarouselLayout>
+        <section>
+            <ProductCarouselLayout label="Produse Noi" category="produse-noi">
+                <CarouselProductList data={data} isPending={isPending} />
+            </ProductCarouselLayout>
+        </section>
     );
 }
 

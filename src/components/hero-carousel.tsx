@@ -200,7 +200,7 @@ const CustomSlide = () => {
 // 3. Main Example Component
 const HeroCarousel = () => {
   return (
-    <div className="">
+    <section className="">
       <Carousel className="w-full">
         <CarouselContent>
           <CarouselItem >
@@ -211,7 +211,7 @@ const HeroCarousel = () => {
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />
       </Carousel>
-    </div>
+    </section>
   )
 }
 

@@ -19,19 +19,21 @@ import { MobileNavigation } from "./mobile-navigation"
 
 const Header = () => {
     return (
-        <header className="z-20 border-b bg-background">
-            <div className="h-8 bg-primary flex items-center justify-center text-primary-foreground text-xs">
+        <>
+            <div className="py-2  w-full bg-primary flex items-center justify-center text-primary-foreground text-xs">
                 <span>Transport gratuit la comenzi de peste 500 de lei</span>
             </div>
-            <Container className="flex py-2 items-center justify-between">
-                <BrandLink />
-                <Navigation />
-                <div className="flex">
-                    <CTA />
-                    <MobileNavigation />
-                </div>
-            </Container>
-        </header>
+            <header className="z-20 border-b bg-background/90  sticky top-0">
+
+                <Container className="flex py-2 items-center justify-between">
+                    <BrandLink />
+                    <Navigation />
+                    <div className="flex">
+                        <CTA />
+                        <MobileNavigation />
+                    </div>
+                </Container>
+            </header></>
     );
 };
 
@@ -51,7 +53,7 @@ const Navigation = () => {
                 {navigation.map((navItem) => {
 
                     if (!navItem.visible) {
-                        return 
+                        return
                     }
 
                     if (!navItem.children || navItem.children.length === 0) {

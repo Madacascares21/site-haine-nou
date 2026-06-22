@@ -6,7 +6,7 @@ export default function CheckoutPage() {
 
 
     return (
-        <main className="bg-background z-30">
+        <main className="bg-background z-30 flex-1 ">
             <header className="border-b border-border">
                 <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-5">
                     <ShoppingBag className="h-5 w-5 text-foreground" />
