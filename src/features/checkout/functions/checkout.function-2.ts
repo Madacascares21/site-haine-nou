@@ -4,11 +4,12 @@ import { documentIdToProductsServerFn } from "#/features/Products/functions/prod
 import { getSession } from "#/lib/auth.functions";
 import { eq } from "drizzle-orm";
 import type { OrderFields } from "../type";
-import OrderEmail from "../components/order-email-template"
+import OrderEmail, { type OrderItemType } from "../components/order-email-template"
 // import { createElement } from 'react';
 import { sendEmail } from "#/lib/nodemailer";
 import { render } from "@react-email/components";
 import type { ReactNode } from "react";
+import { site } from "#/features/header/constant";
 export const createOrder = async (data: OrderFields) => {
 
 
@@ -71,7 +72,40 @@ export const createOrder = async (data: OrderFields) => {
     await db.delete(cartItems).where(eq(cartItems.userId, session.user.id));
 
 
-    const emailHtml = await render(OrderEmail({}));
+    const items: OrderItemType[] = rawProducts.map((item) => {
+        return {
+            color: item.variant.color.name,
+            id: item.variant.documentId || "",
+            name: item.product.name,
+            price: item.product.pricing.final_price,
+            qty: item.quantity,
+            size: item.variant.size.name,
+            sku: item.variant.name,
+            imageUrl: item.variant.media[0].url,
+        }
+    })
+
+
+    const emailHtml = await render(OrderEmail({
+        brandName: site.name,
+        customerName: session.user.name,
+        items: items,
+        orderDate: "",
+        orderNumber: "98",
+        subtotal: subtotal,
+        shippingCost: 0,
+        total: subtotal,
+        taxRate: 0,
+        shippingAddress: {
+            country: "Romania",
+            line1: data.address,
+            line2: data.city,
+            name: session.user.name
+
+        },
+        payment: { method: data.payment, last4: "xxxx" }
+
+    }));
     await sendEmail({
         subject: " Comanda ta a fost inregistrata cu success",
         text: "",
