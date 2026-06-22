@@ -25,8 +25,9 @@ function Home() {
     <main>
         <HeroCarousel />
         <CategoryBannerSection />
+                <NewProducts />
+
         <FeaturedProducts />
-        <NewProducts />
         <BestPrice />
     </main>
   )
