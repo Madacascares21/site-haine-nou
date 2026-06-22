@@ -1,13 +1,13 @@
-import { isAuthenticated } from "#/lib/auth.functions";
 import { createServerFn } from "@tanstack/react-start";
 import { getOrder, getOrdersList } from "../function/order.function";
 import { orderIdSchema } from "../schema";
 import { notFound } from "@tanstack/react-router";
 import type { CartItemSchemaType, OrderCartItemSchemaType } from "#/features/cart/schema";
+import { requireAuth } from "#/lib/auth.functions";
 
 
 export const getOrderListServerFn = createServerFn().handler(async () => {
-    const session = await isAuthenticated()
+    const session = await requireAuth()
 
     const orders = await getOrdersList({ userId: session?.user.id! })
 
@@ -24,7 +24,7 @@ export const getOrderListServerFn = createServerFn().handler(async () => {
 
 
 export const getOrderServerFn = createServerFn().validator(orderIdSchema).handler(async ({ data }) => {
-    await isAuthenticated()
+    await requireAuth()
     const order = await getOrder({ orderId: data.orderId })
 
     if (order === undefined) {
