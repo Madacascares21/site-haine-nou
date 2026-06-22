@@ -67,7 +67,7 @@ export interface OrderConfirmationEmailProps {
 // --- Utilities & Child Components ---
 
 const fmt = (currency: string, value: number): string =>
-  `${currency}${Number(value).toFixed(2)}`;
+  `${Number(value).toFixed(2)} ${currency}`; // Adjusted for European standard positioning (e.g., 525.60 €)
 
 interface ClothingPlaceholderProps {
   bg?: string;
@@ -124,7 +124,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ item, currency }) => (
       <Text style={styles.itemName}>{item.name}</Text>
       <Text style={styles.muted}>SKU: {item.sku}</Text>
       <Text style={styles.muted}>
-        {item.color} · Size {item.size} · Qty {item.qty}
+        Culoare: {item.color} · Mărime: {item.size} · Cantitate: {item.qty}
       </Text>
     </Column>
 
@@ -141,18 +141,18 @@ const OrderItem: React.FC<OrderItemProps> = ({ item, currency }) => (
 const DEFAULT_ITEMS: OrderItemType[] = [
   {
     id: 1,
-    name: "Merino wool oversized blazer",
+    name: "Blazer supradimensionat din lână Merino",
     sku: "MW-BLZ-CHR-L",
-    color: "Charcoal",
+    color: "Cărbune",
     size: "L / EU 52",
     qty: 1,
     price: 289,
   },
   {
     id: 2,
-    name: "Relaxed linen trousers",
+    name: "Pantaloni lejeri din in",
     sku: "LN-TRS-IVR-M",
-    color: "Ivory",
+    color: "Fildeș",
     size: "M / EU 48",
     qty: 1,
     price: 149,
@@ -164,22 +164,22 @@ const DEFAULT_ITEMS: OrderItemType[] = [
 export default function OrderEmail({
   brandName = "ARKT",
   brandTagline = "STUDIO",
-  brandAddress = "Calea Victoriei 22, București, Romania",
+  brandAddress = "Calea Victoriei 22, București, România",
   orderNumber = "ORD-2026-88471",
-  orderDate = "June 22, 2026",
-  estimatedDelivery = "June 27–30, 2026",
+  orderDate = "22 iunie 2026",
+  estimatedDelivery = "27–30 iunie 2026",
   customerName = "Alex Ionescu",
   currency = "€",
   subtotal = 438,
   shippingCost = 0,
-  taxRate = 0.2,
-  total = 525.6,
+  taxRate = 0.19, // Adjusted to Romania's standard standard VAT (19%)
+  total = 521.22,
   items = DEFAULT_ITEMS,
   shippingAddress = {
     name: "Alex Ionescu",
     line1: "Str. Independenței 14",
     line2: "Ploiești, Prahova 100001",
-    country: "Romania",
+    country: "România",
   },
   payment = {
     method: "Visa",
@@ -199,7 +199,7 @@ export default function OrderEmail({
       <Head />
 
       <Preview>
-        Your {brandName} order has been confirmed
+        Comanda ta de la {brandName} a fost confirmată
       </Preview>
 
       <Body style={styles.body}>
@@ -211,26 +211,26 @@ export default function OrderEmail({
           </Section>
 
           <Section style={styles.banner}>
-            <Text style={styles.success}>✓ ORDER CONFIRMED</Text>
+            <Text style={styles.success}>✓ COMANDĂ CONFIRMATĂ</Text>
             <Text style={styles.title}>
-              Thank you, {firstName}!
+              Îți mulțumim, {firstName}!
             </Text>
             <Text style={styles.subtitle}>
-              Your order has been received and is being prepared.
+              Comanda ta a fost recepționată și este în curs de pregătire.
             </Text>
           </Section>
 
           <Section style={styles.meta}>
             <Row>
-              <MetaCell label="Order number" value={orderNumber} />
-              <MetaCell label="Order date" value={orderDate} />
-              <MetaCell label="Delivery" value={estimatedDelivery} />
+              <MetaCell label="Număr comandă" value={orderNumber} />
+              <MetaCell label="Data comenzii" value={orderDate} />
+              <MetaCell label="Livrare estimată" value={estimatedDelivery} />
             </Row>
           </Section>
 
           <Section style={styles.content}>
             <Text style={styles.label}>
-              Your items
+              Produsele tale
             </Text>
 
             {items.map(item => (
@@ -246,15 +246,15 @@ export default function OrderEmail({
             <Row>
               <Column>
                 <Text>Subtotal</Text>
-                <Text>Shipping</Text>
-                <Text>VAT</Text>
+                <Text>Livrare</Text>
+                <Text>TVA</Text>
                 <Text style={styles.total}>Total</Text>
               </Column>
 
               <Column align="right">
                 <Text>{fmt(currency, subtotal)}</Text>
                 <Text>
-                  {shippingCost ? fmt(currency, shippingCost) : "Free"}
+                  {shippingCost ? fmt(currency, shippingCost) : "Gratuită"}
                 </Text>
                 <Text>{fmt(currency, tax)}</Text>
                 <Text style={styles.total}>
@@ -268,7 +268,7 @@ export default function OrderEmail({
             <Row>
               <Column>
                 <Text style={styles.label}>
-                  Shipping address
+                  Adresă de livrare
                 </Text>
                 <Text>
                   {shippingAddress.name}
@@ -283,13 +283,13 @@ export default function OrderEmail({
 
               <Column>
                 <Text style={styles.label}>
-                  Payment
+                  Plată
                 </Text>
                 <Text>
-                  {payment.method} ending in {payment.last4}
+                  {payment.method} care se termină în {payment.last4}
                 </Text>
                 <Text>
-                  ✓ Payment verified
+                  ✓ Plată verificată
                 </Text>
               </Column>
             </Row>
@@ -299,13 +299,13 @@ export default function OrderEmail({
                 href={trackingUrl}
                 style={styles.button}
               >
-                Track your order
+                Urmărește comanda
               </Button>
 
               <Text>
-                Need help?{" "}
+                Ai nevoie de ajutor?{" "}
                 <Link href={supportUrl}>
-                  Contact support
+                  Contactează asistența
                 </Link>
               </Text>
             </Section>
@@ -321,11 +321,11 @@ export default function OrderEmail({
             </Text>
 
             <Text>
-              <Link href={privacyUrl}>Privacy</Link>
+              <Link href={privacyUrl}>Confidențialitate</Link>
               {" · "}
-              <Link href={returnsUrl}>Returns</Link>
+              <Link href={returnsUrl}>Retururi</Link>
               {" · "}
-              <Link href={unsubscribeUrl}>Unsubscribe</Link>
+              <Link href={unsubscribeUrl}>Dezabonare</Link>
             </Text>
           </Section>
 
