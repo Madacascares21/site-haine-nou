@@ -60,8 +60,8 @@ export default function CategoryBannerSection() {
     return (
         <section className="w-full px-4 md:px-10 py-10">
             <Container>
-                <h2 className="text-white text-xl md:text-2xl font-semibold mb-4">
-                    Shop by Category
+                <h2 className="text-2xl font-semibold mb-4">
+                    Categorii de haine
                 </h2>
 
                 <Tabs defaultValue={tabs[0]?.label}>

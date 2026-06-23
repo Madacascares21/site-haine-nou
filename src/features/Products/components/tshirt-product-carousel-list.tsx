@@ -17,7 +17,7 @@ const FeaturedProducts = () => {
 
     return (
         <section>
-            <ProductCarouselLayout label="Featured" category="colectii" subCategory="featured">
+            <ProductCarouselLayout label="Special Alese" category="colectii" subCategory="featured">
                 <CarouselProductList data={data} isPending={isPending} />
             </ProductCarouselLayout>
         </section>

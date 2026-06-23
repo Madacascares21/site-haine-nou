@@ -125,7 +125,7 @@ export default function CartSheet() {
                                         <div className="flex flex-col justify-between flex-1 min-w-0">
                                             <div className="space-y-0.5">
                                                 <div className="flex items-start justify-between gap-1">
-                                                    <h4 className="font-semibold text-sm tracking-tight truncate">
+                                                    <h4 className="font-semibold text-sm tracking-tight truncate max-w-[250px]">
                                                         {productName}
                                                     </h4>
                                                     {!isAvailable && (

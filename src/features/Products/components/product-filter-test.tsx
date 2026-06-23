@@ -27,7 +27,7 @@ export function ProductFilters() {
             <Accordion type="multiple" defaultValue={["price", "color", "size", "material"]} className="w-full">
 
                 <AccordionItem value="price">
-                    <AccordionTrigger>Price</AccordionTrigger>
+                    <AccordionTrigger>Pret</AccordionTrigger>
                     <AccordionContent>
                         <PriceSliderFilter />
                     </AccordionContent>
@@ -35,21 +35,21 @@ export function ProductFilters() {
 
 
                 <AccordionItem value="color">
-                    <AccordionTrigger>Color</AccordionTrigger>
+                    <AccordionTrigger>Culoare</AccordionTrigger>
                     <AccordionContent>
                         <ColorFilterSelector />
                     </AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="size">
-                    <AccordionTrigger>Size</AccordionTrigger>
+                    <AccordionTrigger>Marime</AccordionTrigger>
                     <AccordionContent>
                         <SizeFilterSelector />
                     </AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="material">
-                    <AccordionTrigger>Material</AccordionTrigger>
+                    <AccordionTrigger>Material (experimental)</AccordionTrigger>
                     <AccordionContent>
                         <div className="space-y-3">
                             {materials.map((material) => (

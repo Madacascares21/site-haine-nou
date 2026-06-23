@@ -33,7 +33,7 @@ export function ProductSort() {
                 id="sortBy"
                 className="text-sm text-muted-foreground"
             >
-                Sort by:
+                Sorteaza dupa:
             </span>
 
             <div className="flex items-center ml-auto">

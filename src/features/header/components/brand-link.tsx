@@ -5,9 +5,9 @@ const BrandLink = () => {
     return (
 
         // <Link to="/"><img className="size-15" alt="Auxload Store" src="/logo.svg"/></Link>)
-        <div className="text-md tracking-[0.35em]">
+        <Link to="/" className="text-md` tracking-[0.35em]">
             {site.name}
-          </div>)
+          </Link >)
 }
 
 export default BrandLink

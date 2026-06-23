@@ -93,7 +93,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             {/* Product Info */}
             <div className="flex flex-col gap-1">
-                <h2 className="text-sm text-accent-foreground leading-tight">
+                <h2 className="text-sm  leading-tight">
                     {product.name}
                 </h2>
                 <Price pricing={product.pricing} />

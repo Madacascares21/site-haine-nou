@@ -102,12 +102,12 @@ function RouteComponent() {
           <SheetTrigger asChild>
             <Button variant="outline" className="w-full">
               <SlidersHorizontalIcon className="mr-2 h-4 w-4" />
-              Filters
+              Filtre
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
             <SheetHeader>
-              <SheetTitle>Filters</SheetTitle>
+              <SheetTitle>Filtre</SheetTitle>
             </SheetHeader>
             <div className="mt-6 px-8">
               <ProductFilters />
@@ -124,7 +124,7 @@ function RouteComponent() {
         <div className="flex-1">
           <div className="flex items-center justify-between mb-6">
             <p className="text-sm text-muted-foreground">
-              Showing {data.pageInfo.total} products
+              Produse gasite: {data.pageInfo.total} 
             </p>
             <div className="flex items-center gap-2">
               <ProductSort />
