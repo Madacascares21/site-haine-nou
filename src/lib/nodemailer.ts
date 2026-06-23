@@ -1,3 +1,4 @@
+import { site } from "#/features/header/constant";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
@@ -22,7 +23,7 @@ export async function sendEmail({
     html?: string;
 }) {
     const info = await transporter.sendMail({
-        from: `"Traditie si Culoare" <${process.env.GMAIL_USER}>`,
+        from: `${site.name} <${process.env.GMAIL_USER}>`,
         to,
         subject,
         text,

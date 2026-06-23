@@ -4,12 +4,13 @@ import { documentIdToProductsServerFn } from "#/features/Products/functions/prod
 import { getSession } from "#/lib/auth.functions";
 import { eq } from "drizzle-orm";
 import type { OrderFields } from "../type";
-import OrderEmail, { type OrderItemType } from "../components/order-email-template"
+import ClientOrderEmail, { type OrderItemType } from "../components/order-email-template"
 // import { createElement } from 'react';
 import { sendEmail } from "#/lib/nodemailer";
 import { render } from "@react-email/components";
 import type { ReactNode } from "react";
 import { site } from "#/features/header/constant";
+import AdminOrderEmail from "../components/admin-email-tamplate";
 export const createOrder = async (data: OrderFields) => {
 
 
@@ -86,7 +87,7 @@ export const createOrder = async (data: OrderFields) => {
     })
 
 
-    const emailHtml = await render(OrderEmail({
+    const clientEmailHtml = await render(ClientOrderEmail({
         brandName: site.name,
         customerName: session.user.name,
 
@@ -107,15 +108,43 @@ export const createOrder = async (data: OrderFields) => {
         payment: { method: data.payment, last4: "xxxx" }
 
     }));
+
     await sendEmail({
         subject: " Comanda ta a fost inregistrata cu success",
         text: "d",
         to: session.user.email,
-        html: emailHtml
+        html: clientEmailHtml
+    })
+    const adminEmailHtml = await render(AdminOrderEmail({
+        brandName: site.name,
+        customerName: session.user.name,
+
+        items: items,
+        orderDate: newOrder.createdAt.toLocaleDateString(),
+        orderNumber: "98",
+        subtotal: subtotal,
+        shippingCost: 0,
+        total: subtotal,
+        taxRate: 0,
+        shippingAddress: {
+            country: "Romania",
+            line1: data.address,
+            line2: data.city,
+            name: session.user.name
+
+        },
+        payment: { method: data.payment, last4: "xxxx" }
+
+    }));
+    console.log(session.user.email)
+    await sendEmail({
+        subject: " O noua comanda a fost inregistrata",
+        text: "d",
+        to: session.user.email,
+        html: adminEmailHtml
     })
 
-
-
+    console.log(session.user.email)
     return newOrder;
 
 

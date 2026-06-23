@@ -154,7 +154,7 @@ const DEFAULT_ITEMS: OrderItemType[] = [
 
 // --- Main Email Component ---
 
-export default function OrderEmail({
+export default function ClientOrderEmail({
   brandName = "ARKT",
   brandTagline = "STUDIO",
   orderNumber = "ORD-2026-88471",
@@ -345,7 +345,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
 
   banner: {
-    backgroundColor: "#2D5A44",
+    backgroundColor: "#AA4A44",
     padding: "30px",
     textAlign: "center",
   },
