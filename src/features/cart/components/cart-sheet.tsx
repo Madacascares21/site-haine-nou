@@ -1,5 +1,5 @@
 // Cart.tsx
-import { cn, getStrapiMedia } from "#/lib/utils";
+import { cn, formatPrice, getStrapiMedia } from "#/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -45,8 +45,8 @@ export default function CartSheet() {
     }, 0);
 
     // Mock calculations for extra pricing details
-    const shippingCost = subtotal > 0 && subtotal < 150 ? 15 : 0;
-    const estimatedTax = subtotal * 0.08;
+    const shippingCost = 0;
+    const estimatedTax = subtotal * 0;
     const totalCost = subtotal + shippingCost + estimatedTax;
 
     return (
@@ -71,7 +71,7 @@ export default function CartSheet() {
             <SheetContent className="flex flex-col w-full sm:max-w-md p-6">
                 <SheetHeader className="pb-4 border-b">
                     <SheetTitle className="flex items-center gap-2">
-                        Shopping Cart s ({items.length} {items.length === 1 ? 'item' : 'items'})
+                        Produse Adaugate in cos({items.length} {items.length === 1 ? 'item' : 'items'})
                         {isAnyLoading && <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />}
                     </SheetTitle>
                 </SheetHeader>
@@ -198,27 +198,27 @@ export default function CartSheet() {
                         <div className="space-y-1.5 text-sm">
                             <div className="flex justify-between">
                                 <span className="text-muted-foreground">Subtotal</span>
-                                <span className="font-medium">${subtotal.toFixed(2)}</span>
+                                <span className="font-medium">{formatPrice(subtotal)}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-muted-foreground">Shipping</span>
+                                <span className="text-muted-foreground">Transport</span>
                                 <span className="font-medium">
-                                    {shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}
+                                    {shippingCost === 0 ? "Free" : formatPrice(shippingCost)}
                                 </span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-muted-foreground">Estimated Tax</span>
-                                <span className="font-medium">${estimatedTax.toFixed(2)}</span>
+                                <span className="text-muted-foreground">Taxe</span>
+                                <span className="font-medium">{formatPrice(estimatedTax)}</span>
                             </div>
                             <div className="flex justify-between border-t pt-2 mt-1 text-base font-semibold">
-                                <span>Total Cost</span>
-                                <span>${totalCost.toFixed(2)}</span>
+                                <span>Cost Total</span>
+                                <span>{formatPrice(totalCost)}</span>
                             </div>
                         </div>
 
                         <div className="flex gap-2 w-full mt-2">
                             <Button variant="outline" onClick={clear} className="flex-1">
-                                Clear
+                                Sterge
                             </Button>
                             <Link to="/checkout" onClick={() => {
                                 closeCart()

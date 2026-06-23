@@ -24,7 +24,7 @@ export function OrderSummary() {
   }, 0);
 
   // Configurable delivery rule (e.g., Free delivery over 150 RON, otherwise 24.99 RON)
-  const shipping = subtotal > 0 && subtotal >= 150 ? 0 : 24.99;
+  const shipping = 0;
   const total = subtotal + shipping;
 
   return (
