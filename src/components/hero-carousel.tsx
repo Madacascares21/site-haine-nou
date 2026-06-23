@@ -142,7 +142,7 @@ const CustomSlide = () => {
             <div className="relative h-60 w-60   md:h-105 md:w-105 overflow-hidden rounded-[40px] border bg-background shadow-2xl">
 
               <img
-                src={"https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"}
+                src={"https://gorgeous-approval-94cd832c5f.media.strapiapp.com/a7d3b4a0_225c_45dc_a00e_d415af242bcb_a297f697fa.png"}
                 // alt={slide.title}
                 className="
               h-full
