@@ -83,7 +83,7 @@ export function OrderSummary() {
 
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="truncate text-sm font-medium text-card-foreground">
+                  <p className="truncate max-w-[200px] text-sm font-medium text-card-foreground">
                     {productName}
                   </p>
                   {!isAvailable && !isLoading && (

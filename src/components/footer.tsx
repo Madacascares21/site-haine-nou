@@ -1,3 +1,4 @@
+import { site } from "#/features/header/constant";
 import { Facebook, Instagram, Youtube, MapPin, Accessibility } from "lucide-react";
 
 export default function Footer() {
@@ -5,37 +6,10 @@ export default function Footer() {
     <footer className="bg-foreground text-black">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-5">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
 
           {/* Magazin online */}
-          <div>
-            <h3 className="mb-8 text-lg font-semibold">
-              Magazin online
-            </h3>
-
-            <ul className="space-y-4 text-sm">
-              <li>Întrebări frecvente</li>
-              <li>Comanda mea (oaspete)</li>
-              <li>Retragerea din contract</li>
-              <li>Returnarea mărfurilor</li>
-              <li>Reclamații</li>
-              <li>Contul meu</li>
-              <li>Programul de fidelitate F.A.Q.</li>
-            </ul>
-          </div>
-
-
-          {/* Informatii */}
-          <div>
-            <h3 className="mb-8 text-lg font-semibold">
-              Informații
-            </h3>
-
-            <ul className="space-y-4 text-sm">
-              <li>Aplicație pentru descărcare</li>
-              <li>Program de loialitate</li>
-            </ul>
-          </div>
+     
 
 
           {/* Help */}
@@ -113,15 +87,11 @@ export default function Footer() {
         <div className="py-10 flex flex-col items-center gap-10">
 
           <div className="text-2xl tracking-[0.35em]">
-            gate.shop
+            {site.name}
           </div>
 
 
-          <div className="flex items-center gap-2 text-sm">
-            <MapPin size={16}/>
-            RO/RO
-          </div>
-
+          
         </div>
 
       </div>

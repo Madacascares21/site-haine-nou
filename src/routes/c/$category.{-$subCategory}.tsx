@@ -86,7 +86,7 @@ function RouteComponent() {
   const params = Route.useParams()
 
 
-  return <main className="min-h-screen bg-background">
+  return <main className="flex-1 min-h-screen bg-background">
     <Container >
       <div className="mb-8 md:mb-12">
         <h1 className="text-2xl mb-1  tracking-tight md:text-4xl text-balance">

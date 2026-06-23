@@ -13,7 +13,7 @@ import { requireAuth } from '#/lib/auth.functions'
 
 export default function CheckoutSkeleton() {
     return (
-        <div className="w-full max-w-6xl mx-auto p-6 bg-[#121212] text-white min-h-screen">
+        <div className="w-full flex-1 max-w-6xl mx-auto p-6 bg-[#121212] text-white min-h-screen">
             {/* Main Grid Container */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 

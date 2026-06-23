@@ -109,7 +109,7 @@ export const createOrder = async (data: OrderFields) => {
     }));
     await sendEmail({
         subject: " Comanda ta a fost inregistrata cu success",
-        text: "",
+        text: "d",
         to: session.user.email,
         html: emailHtml
     })

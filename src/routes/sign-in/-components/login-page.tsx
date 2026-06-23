@@ -6,7 +6,7 @@ import { FieldDescription } from '@/components/ui/field'
 
 export function AuthenticationPage() {
     return (
-        <div className=" px-12 sm:px-4 py-8 flex-1  flex h-full">
+        <div className=" px-12 sm:px-4 py-8 flex-1  flex  min-h-screen">
             {/* <Link
         to="/login"
         className={cn(

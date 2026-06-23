@@ -17,10 +17,11 @@ export default function OrderDetails() {
   const order = data
 
   return (
+    <main className='flex-1 min-h-screen'>
     <TooltipProvider>
       <Container >
         <Card
-        className="
+          className="
                     p-8
                 "
 
@@ -293,6 +294,6 @@ export default function OrderDetails() {
         </Card>
       </Container>
 
-    </TooltipProvider>
+    </TooltipProvider></main>
   )
 }
