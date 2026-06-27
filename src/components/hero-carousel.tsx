@@ -107,7 +107,7 @@ const CustomSlide = () => {
               params={{ category: "produse-noi" }}
               className={buttonVariants({ variant: "default", className: "rounded-xl px-8" })}
             >
-              Shop Now
+              Vezi Colectia
             </Link>
 
 

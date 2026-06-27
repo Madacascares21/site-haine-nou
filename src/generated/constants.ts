@@ -54,58 +54,6 @@ export const generatedData = {
         }
       },
       {
-        "name": "femei",
-        "visible": true,
-        "seo": {
-          "name": "Femei",
-          "description": "sfghgfhdfgh",
-          "media": {
-            "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
-          }
-        },
-        "media": {
-          "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
-        },
-        "sub_categories_connection": {
-          "nodes": [
-            {
-              "name": "tricou-femei",
-              "seo": {
-                "name": "fiyfyify",
-                "description": "eutdjd",
-                "media": {
-                  "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
-                }
-              },
-              "media": {
-                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/Chat_GPT_Image_Jun_21_2026_10_23_03_PM_f01b2faec6.png"
-              }
-            },
-            {
-              "name": "adidasi",
-              "seo": null,
-              "media": {
-                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/images_a1bc29eb1e.jpeg"
-              }
-            },
-            {
-              "name": "pantaloni",
-              "seo": null,
-              "media": {
-                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/hip_3ff25f891c.jpeg"
-              }
-            },
-            {
-              "name": "hanorace",
-              "seo": null,
-              "media": {
-                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/95876_hanorac_dama_negru_9358_1_7f086ad136.webp"
-              }
-            }
-          ]
-        }
-      },
-      {
         "name": "colectii",
         "visible": false,
         "seo": {
@@ -144,6 +92,58 @@ export const generatedData = {
               },
               "media": {
                 "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/il_794x_N_7244648222_770p_3383b0a297.jpg"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "femei",
+        "visible": true,
+        "seo": {
+          "name": "Femei",
+          "description": "sfghgfhdfgh",
+          "media": {
+            "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/95876_hanorac_dama_negru_9358_1_7f086ad136.webp"
+          }
+        },
+        "media": {
+          "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/95876_hanorac_dama_negru_9358_1_7f086ad136.webp"
+        },
+        "sub_categories_connection": {
+          "nodes": [
+            {
+              "name": "tricou-femei",
+              "seo": {
+                "name": "fiyfyify",
+                "description": "eutdjd",
+                "media": {
+                  "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/95876_hanorac_dama_negru_9358_1_7f086ad136.webp"
+                }
+              },
+              "media": {
+                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/95876_hanorac_dama_negru_9358_1_7f086ad136.webp"
+              }
+            },
+            {
+              "name": "adidasi",
+              "seo": null,
+              "media": {
+                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/images_a1bc29eb1e.jpeg"
+              }
+            },
+            {
+              "name": "pantaloni",
+              "seo": null,
+              "media": {
+                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/hip_3ff25f891c.jpeg"
+              }
+            },
+            {
+              "name": "hanorace",
+              "seo": null,
+              "media": {
+                "url": "https://gorgeous-approval-94cd832c5f.media.strapiapp.com/95876_hanorac_dama_negru_9358_1_7f086ad136.webp"
               }
             }
           ]

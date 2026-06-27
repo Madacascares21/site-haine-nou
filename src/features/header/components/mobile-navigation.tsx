@@ -33,7 +33,7 @@ export const MobileNavigation = () => {
             </SheetTrigger>
 
             {/* Changed padding to p-6 for a cleaner, balanced structure */}
-            <SheetContent side="right" className="w-[300px] p-6 flex flex-col justify-between">
+            <SheetContent side="right" className="w-75 p-6 flex flex-col justify-between">
                 <div className="flex flex-col h-full">
 
                     {/* Brand Logo & Header Section */}
@@ -47,6 +47,11 @@ export const MobileNavigation = () => {
                     <nav className="mt-4 flex flex-col gap-1 overflow-y-auto pr-1">
                         {navigation.map((item) => {
                             const hasChildren = item.children?.length;
+
+
+                            if (!item.visible) {
+                                return
+                            }
 
                             if (!hasChildren) {
                                 return (

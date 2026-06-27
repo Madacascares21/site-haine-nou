@@ -56,7 +56,7 @@ const Navigation = () => {
                         return
                     }
 
-                    if (!navItem.children || navItem.children.length === 0) {
+                    if (!navItem.children || navItem.children.length === 0 ) {
                         return (
                             <NavigationMenuItem key={navItem.label}>
                                 <LinkItem label={navItem.label} to={navItem.to} />
