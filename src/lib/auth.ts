@@ -28,7 +28,6 @@ export const auth = betterAuth({
           text: `Click the link to delete account: ${url}`,
 
         });
-        console.log(url)
         // Your email sending logic here
         // Example: sendEmail(data.user.email, "Verify Deletion", data.url);
       },

@@ -136,7 +136,6 @@ export const createOrder = async (data: OrderFields) => {
         payment: { method: data.payment, last4: "xxxx" }
 
     }));
-    console.log(session.user.email)
     await sendEmail({
         subject: " O noua comanda a fost inregistrata",
         text: "d",
@@ -144,7 +143,6 @@ export const createOrder = async (data: OrderFields) => {
         html: adminEmailHtml
     })
 
-    console.log(JSON.stringify(info))
     return newOrder;
 
 

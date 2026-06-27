@@ -42,16 +42,27 @@ export const Route = createFileRoute('/product/$slug')({
     //         })
     //     ]
     // }),
-    head: ({ loaderData }) => ({
-        meta: [
-            ...seo({
-                title: `${loaderData?.name} | ${site.name}`,
-                description: loaderData?.seo?.description || "",
-                image: loaderData?.seo?.media?.url || ""
-            })
-        ]
-    }),
+    // head: ({ loaderData }) => ({
+    //     meta: [
+    //         ...seo({
+    //             title: `${loaderData?.name} | ${site.name}`,
+    //             description: loaderData?.seo?.description || "",
+    //             image: loaderData?.seo?.media?.url || ""
+    //         })
+    //     ]
+    // }),
+    head: ({ loaderData, params }) => {
 
+        const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.slug}`
+        return seo({
+            title: `${loaderData?.name} | ${site.name}`,
+            description: loaderData?.seo?.description ??
+                `${loaderData?.name}. ${loaderData?.description.slice(0, 150)}`,
+            image: loaderData?.seo?.media?.url,
+            canonical,
+            type: "product",
+        })
+    }
 })
 
 function RouteComponent() {
@@ -65,7 +76,7 @@ function RouteComponent() {
     const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(firstVariant || allVariants[0])
     const [selectedImage, setSelectedImage] = useState(0)
     const { addItem } = useCartStore()
-    const { isOpen, openCart, closeCart, toggleCart } = useCartStore();
+    const {  openCart} = useCartStore();
 
     // inside RouteComponent
     useEffect(() => {
@@ -119,7 +130,7 @@ function RouteComponent() {
                             {/* Actions */}
                             <div className="flex gap-4 pt-4">
                                 <Button
-                                aria-label='Cumpara acum'
+                                    aria-label='Cumpara acum'
                                     size="lg"
                                     className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
                                     onClick={() => {

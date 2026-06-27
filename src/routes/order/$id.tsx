@@ -1,6 +1,8 @@
+import { site } from '#/features/header/constant';
 import OrderDetailsPage from '#/features/order/components/order-page'
 import { getOrderServerFn } from '#/features/order/server/order'
 import { requireAuth } from '#/lib/auth.functions';
+import { seo } from '#/lib/seo';
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/order/$id')({
@@ -18,8 +20,17 @@ export const Route = createFileRoute('/order/$id')({
                 orderId: id
             }
         })
-        console.log("Order id", data.products)
         return data
+    },
+    head: ({ params }) => {
+
+        const canonical = `${import.meta.env.VITE_SITE_URL}/order/${params.id}`
+        return seo({
+            title: `Order number: ${params.id} | ${site.name}`,
+            description: `Comanda numarul ${params.id} de pe site!`,
+            canonical,
+            type: "website",
+        })
     }
 })
 

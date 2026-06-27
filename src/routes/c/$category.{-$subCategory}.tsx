@@ -44,6 +44,7 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
     let media: any = ""
 
     const category = generatedData.categories_connection.nodes.find(c => params.category === c.name)
+    const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.category}${params.subCategory ? `/${params.subCategory}` : null}`
 
     if (!category) {
       description = ""
@@ -59,19 +60,12 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
 
 
 
-    return ({
-      meta: [
-        // ...seo({
-        //   title: `${params.subCategory ? slugToTitle(params.subCategory) : slugToTitle(params.category)} | ${siteConfig.siteName}`,
-        //   description: `${params.category} Hainute`,
-        //   image: "/banner.jpg"
-        // })
-        ...seo({
-          title: `${params.subCategory ? slugToTitle(params.subCategory) : slugToTitle(params.category)} | ${site.name}`,
-          description,
-          image: media
-        })
-      ]
+    return seo({
+      title: `${params.subCategory ? slugToTitle(params.subCategory) : slugToTitle(params.category)} | ${site.name}`,
+      description,
+      image: media,
+      canonical,
+      // type: "product"
     })
   },
 
@@ -124,7 +118,7 @@ function RouteComponent() {
         <div className="flex-1">
           <div className="flex items-center justify-between mb-6">
             <p className="text-sm text-muted-foreground">
-              Produse gasite: {data.pageInfo.total} 
+              Produse gasite: {data.pageInfo.total}
             </p>
             <div className="flex items-center gap-2">
               <ProductSort />

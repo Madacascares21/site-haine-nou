@@ -14,7 +14,6 @@ export const createOrderServerFn = createServerFn({ method: "POST" }).validator(
         if (error instanceof Error) {
             return { success: false, message: error.message };
         }
-        console.log(error)
         return { success: false, message: "Failed to create order." };
 
     }

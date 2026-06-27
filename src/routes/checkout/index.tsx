@@ -4,12 +4,24 @@ import { createFileRoute } from '@tanstack/react-router'
 export const Route = createFileRoute('/checkout/')({
     beforeLoad: async () => await requireAuth(),
     component: CheckoutPage,
-    pendingComponent: () => <CheckoutSkeleton />
+    pendingComponent: () => <CheckoutSkeleton />,
+    head: () => {
+
+        const canonical = `${import.meta.env.VITE_SITE_URL}/checkout`
+        return seo({
+            title: `Checkout | ${site.name}`,
+            description: "Aici comanda produsele aflate in cosul de cumparaturi",
+            canonical,
+            type: "website",
+        })
+    }
 })
 
 
 import { Skeleton } from "@/components/ui/skeleton"
 import { requireAuth } from '#/lib/auth.functions'
+import { seo } from '#/lib/seo'
+import { site } from '#/features/header/constant'
 
 export default function CheckoutSkeleton() {
     return (

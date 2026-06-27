@@ -8,15 +8,17 @@ import { seo } from '#/lib/seo'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-  head: () => ({
-    meta: [
-      ...seo({
-        title: `Home | ${site.name}`,
-        description: "Auxload Store – haine Gen Z cu imprimeuri trendy și stil modern. Livrare gratuită în Breaza.",
-        image: "/banner.png"
-      })
-    ]
-  }), component: Home
+  head: () => {
+
+    const canonical = `${import.meta.env.VITE_SITE_URL}`
+    return seo({
+      title: `Acasa | ${site.name}`,
+      description: "Auxload Store – haine Gen Z cu imprimeuri trendy și stil modern. Livrare gratuită în Breaza.",
+      canonical,
+      type: "website",
+    })
+  }
+  , component: Home
 
 })
 
