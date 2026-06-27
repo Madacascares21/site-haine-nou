@@ -5,7 +5,7 @@ import { requireAuth } from '#/lib/auth.functions'
 import { seo } from '#/lib/seo'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/order/')({
+export const Route = createFileRoute('/orders/')({
     beforeLoad: async () => await requireAuth(),
     component: RouteComponent,
     loader: async () => {

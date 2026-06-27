@@ -5,7 +5,7 @@ import { requireAuth } from '#/lib/auth.functions';
 import { seo } from '#/lib/seo';
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/order/$id')({
+export const Route = createFileRoute('/orders/$id')({
     component: RouteComponent,
     beforeLoad: async () => await requireAuth(),
     // validateSearch: orderSearchSchema,

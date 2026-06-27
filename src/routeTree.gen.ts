@@ -9,16 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignInIndexRouteImport } from './routes/sign-in/index'
-import { Route as OrderIndexRouteImport } from './routes/order/index'
+import { Route as OrdersIndexRouteImport } from './routes/orders/index'
 import { Route as CheckoutIndexRouteImport } from './routes/checkout/index'
 import { Route as ProductSlugRouteImport } from './routes/product/$slug'
-import { Route as OrderIdRouteImport } from './routes/order/$id'
+import { Route as OrdersIdRouteImport } from './routes/orders/$id'
 import { Route as ApiUploadRouteImport } from './routes/api/upload'
 import { Route as CCategoryChar123SubCategoryChar125RouteImport } from './routes/c/$category.{-$subCategory}'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -29,9 +35,9 @@ const SignInIndexRoute = SignInIndexRouteImport.update({
   path: '/sign-in/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OrderIndexRoute = OrderIndexRouteImport.update({
-  id: '/order/',
-  path: '/order/',
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutIndexRoute = CheckoutIndexRouteImport.update({
@@ -44,9 +50,9 @@ const ProductSlugRoute = ProductSlugRouteImport.update({
   path: '/product/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OrderIdRoute = OrderIdRouteImport.update({
-  id: '/order/$id',
-  path: '/order/$id',
+const OrdersIdRoute = OrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiUploadRoute = ApiUploadRouteImport.update({
@@ -68,22 +74,24 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/api/upload': typeof ApiUploadRoute
-  '/order/$id': typeof OrderIdRoute
+  '/orders/$id': typeof OrdersIdRoute
   '/product/$slug': typeof ProductSlugRoute
   '/checkout/': typeof CheckoutIndexRoute
-  '/order/': typeof OrderIndexRoute
+  '/orders/': typeof OrdersIndexRoute
   '/sign-in/': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/c/$category/{-$subCategory}': typeof CCategoryChar123SubCategoryChar125Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/api/upload': typeof ApiUploadRoute
-  '/order/$id': typeof OrderIdRoute
+  '/orders/$id': typeof OrdersIdRoute
   '/product/$slug': typeof ProductSlugRoute
   '/checkout': typeof CheckoutIndexRoute
-  '/order': typeof OrderIndexRoute
+  '/orders': typeof OrdersIndexRoute
   '/sign-in': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/c/$category/{-$subCategory}': typeof CCategoryChar123SubCategoryChar125Route
@@ -91,11 +99,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/api/upload': typeof ApiUploadRoute
-  '/order/$id': typeof OrderIdRoute
+  '/orders/$id': typeof OrdersIdRoute
   '/product/$slug': typeof ProductSlugRoute
   '/checkout/': typeof CheckoutIndexRoute
-  '/order/': typeof OrderIndexRoute
+  '/orders/': typeof OrdersIndexRoute
   '/sign-in/': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/c/$category/{-$subCategory}': typeof CCategoryChar123SubCategoryChar125Route
@@ -104,33 +113,36 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/robots.txt'
     | '/api/upload'
-    | '/order/$id'
+    | '/orders/$id'
     | '/product/$slug'
     | '/checkout/'
-    | '/order/'
+    | '/orders/'
     | '/sign-in/'
     | '/api/auth/$'
     | '/c/$category/{-$subCategory}'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/robots.txt'
     | '/api/upload'
-    | '/order/$id'
+    | '/orders/$id'
     | '/product/$slug'
     | '/checkout'
-    | '/order'
+    | '/orders'
     | '/sign-in'
     | '/api/auth/$'
     | '/c/$category/{-$subCategory}'
   id:
     | '__root__'
     | '/'
+    | '/robots.txt'
     | '/api/upload'
-    | '/order/$id'
+    | '/orders/$id'
     | '/product/$slug'
     | '/checkout/'
-    | '/order/'
+    | '/orders/'
     | '/sign-in/'
     | '/api/auth/$'
     | '/c/$category/{-$subCategory}'
@@ -138,11 +150,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   ApiUploadRoute: typeof ApiUploadRoute
-  OrderIdRoute: typeof OrderIdRoute
+  OrdersIdRoute: typeof OrdersIdRoute
   ProductSlugRoute: typeof ProductSlugRoute
   CheckoutIndexRoute: typeof CheckoutIndexRoute
-  OrderIndexRoute: typeof OrderIndexRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
   SignInIndexRoute: typeof SignInIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   CCategoryChar123SubCategoryChar125Route: typeof CCategoryChar123SubCategoryChar125Route
@@ -150,6 +163,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -164,11 +184,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignInIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/order/': {
-      id: '/order/'
-      path: '/order'
-      fullPath: '/order/'
-      preLoaderRoute: typeof OrderIndexRouteImport
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout/': {
@@ -185,11 +205,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/order/$id': {
-      id: '/order/$id'
-      path: '/order/$id'
-      fullPath: '/order/$id'
-      preLoaderRoute: typeof OrderIdRouteImport
+    '/orders/$id': {
+      id: '/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof OrdersIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/upload': {
@@ -218,11 +238,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   ApiUploadRoute: ApiUploadRoute,
-  OrderIdRoute: OrderIdRoute,
+  OrdersIdRoute: OrdersIdRoute,
   ProductSlugRoute: ProductSlugRoute,
   CheckoutIndexRoute: CheckoutIndexRoute,
-  OrderIndexRoute: OrderIndexRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
   SignInIndexRoute: SignInIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   CCategoryChar123SubCategoryChar125Route:
