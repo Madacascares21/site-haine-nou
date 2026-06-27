@@ -78,14 +78,31 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 key={color}
                                 type="button"
                                 onMouseEnter={() => {
-                                    const variantx = product.variants.find(v => v.color?.color_code === color) ?? product.variants[0]
+                                    const variantx =
+                                        product.variants.find(v => v.color?.color_code === color) ??
+                                        product.variants[0]
+
                                     setVariant(variantx)
                                 }}
-                                className={`size-4 rounded-full transition border-2 ${variant.color?.color_code === color ? 'border-primary scale-110' : 'border-transparent'
-                                    }`}
-                                style={{ backgroundColor: color }}
+                                onClick={(e) => {
+                                    e.preventDefault() // prevent Link navigation
+                                    const variantx =
+                                        product.variants.find(v => v.color?.color_code === color) ??
+                                        product.variants[0]
+
+                                    setVariant(variantx)
+                                }}
+                                className="flex h-12 w-12 items-center justify-center rounded-full"
                                 aria-label={`Select color ${color}`}
-                            />
+                            >
+                                <span
+                                    className={`h-4 w-4 rounded-full border-2 transition ${variant.color?.color_code === color
+                                            ? "border-primary scale-110"
+                                            : "border-transparent"
+                                        }`}
+                                    style={{ backgroundColor: color }}
+                                />
+                            </button>
                         ))
                     })()}
                 </div>

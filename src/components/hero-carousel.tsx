@@ -144,6 +144,8 @@ const CustomSlide = () => {
               <img
                 src={"https://gorgeous-approval-94cd832c5f.media.strapiapp.com/a7d3b4a0_225c_45dc_a00e_d415af242bcb_a297f697fa.png"}
                 // alt={slide.title}
+                fetchPriority="high"
+                alt="tricou skets"
                 className="
               h-full
               w-full
