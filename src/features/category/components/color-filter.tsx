@@ -8,7 +8,7 @@ import { cn } from "#/lib/utils";
 const categoryRouteApi = getRouteApi('/c/$category/{-$subCategory}')
 
 export function ColorFilterSelector() {
-    const AVAILABLE_COLORS = generatedData.colors_connection.nodes.map(color => color.color_code)
+    const AVAILABLE_COLORS = generatedData.links.colors_connection.nodes.map(color => color.color_code)
 
 
     const navigate = categoryRouteApi.useNavigate();

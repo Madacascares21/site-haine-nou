@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
-import { signIn, signOut } from "@/lib/auth-client"
+import { signIn } from "@/lib/auth-client"
 
 const GoogleProviderButton = ({ loading, setLoading }: { loading: boolean, setLoading: React.Dispatch<React.SetStateAction<boolean>> }) => {
 

@@ -43,7 +43,7 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
     let description: string = ""
     let media: any = ""
 
-    const category = generatedData.categories_connection.nodes.find(c => params.category === c.name)
+    const category = generatedData.links.categories_connection.nodes.find(c => params.category === c.name)
     const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.category}${params.subCategory ? `/${params.subCategory}` : null}`
 
     if (!category) {

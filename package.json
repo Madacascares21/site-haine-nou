@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "build": " tsx src/scripts/generateData.ts && vite build",
+    "build": " pnpm run generate && vite build && cp ./public/sitemap.xml ./dist/client/sitemap.xml",
     "preview": "vite preview",
     "test": "vitest run",
     "generate": "tsx src/scripts/generateData.ts",
@@ -51,6 +51,7 @@
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.1.18",
+    "tanstack-router-sitemap": "^1.0.13",
     "tw-animate-css": "^1.3.6",
     "uploadthing": "^7.7.4",
     "zod": "^4.3.6",

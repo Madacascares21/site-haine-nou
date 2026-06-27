@@ -14,7 +14,7 @@ export const navigationMenuTriggerStyle = cva(
 
 
 const structuredData = {
-    navLinks: generatedData.categories_connection.nodes.map((link) => {
+    navLinks: generatedData.links.categories_connection.nodes.map((link) => {
 
         return {
             name: link.name,
@@ -28,13 +28,13 @@ const structuredData = {
             })
         }
     }),
-    colors: generatedData.colors_connection.nodes.map((c) => {
+    colors: generatedData.links.colors_connection.nodes.map((c) => {
         return {
             name: c.name,
             color_code: c.color_code
         }
     }),
-    sizes: generatedData.sizes_connection.nodes.map((s) => {
+    sizes: generatedData.links.sizes_connection.nodes.map((s) => {
         return {
             name: s.name
         }

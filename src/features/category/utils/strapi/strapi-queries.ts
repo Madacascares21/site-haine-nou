@@ -93,23 +93,7 @@ query (
 `
 
 
-export const GET_SITEMAP_PRODUCTS = gql`
-query{
-  products_connection{
-    nodes {${nodes}}
-     pageInfo {
-      page
-      pageCount
-      pageSize
-      total
-    }
-  }
-}
 
-
-
-
-`
 
 
 const similarProduct = `

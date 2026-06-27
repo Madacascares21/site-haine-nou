@@ -8,6 +8,8 @@ const nodes = `
       categories {
         name
       }
+                updatedAt
+
       sub_categories {
         name
       }
@@ -325,7 +327,23 @@ export const GET_PRODUCT_BY_SLUG = gql`
 
 
 `
+export const GET_SITEMAP_PRODUCTS = gql`
+query{
+  products_connection{
+    nodes {${nodes}}
+     pageInfo {
+      page
+      pageCount
+      pageSize
+      total
+    }
+  }
+}
 
+
+
+
+`
 
 export const GET_PRODUCT_BY_DOCUMENTID = gql`
 query ($productID: ID , $variantID:ID) {
