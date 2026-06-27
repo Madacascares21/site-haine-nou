@@ -55,7 +55,7 @@ const sitemap: Sitemap<TRoutes> = {
         },
         // "/contact": {
         //     priority: 0.4,
-        //     changeFrequency: "yearly",
+        //     changeFrequency: "yearly",s
         // }
 
     },
