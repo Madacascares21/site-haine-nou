@@ -24,7 +24,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     const seoData = seo({
       title: `Acasa | ${site.name}`,
       description: "Auxload Store – haine Gen Z cu imprimeuri trendy și stil modern. Livrare gratuită în Breaza.",
-      canonical: `${import.meta.env.VITE_SITE_URL}`,
+      // canonical: `${import.meta.env.VITE_SITE_URL}`,
       type: 'website',
     })
 
