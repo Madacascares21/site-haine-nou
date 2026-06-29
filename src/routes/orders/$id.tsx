@@ -6,7 +6,11 @@ import { seo } from '#/lib/seo';
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/orders/$id')({
-    pendingComponent: () => <main className='flex-1 w-full h-full min-h-screen '><span>Loading...</span></main>,
+    pendingComponent: () => (
+        <main className='flex-1 w-full h-full min-h-screen '>
+            <span>Se încarcă...</span>
+        </main>
+    ),
     component: RouteComponent,
     beforeLoad: async () => await requireAuth(),
     // validateSearch: orderSearchSchema,
@@ -27,8 +31,8 @@ export const Route = createFileRoute('/orders/$id')({
 
         const canonical = `${import.meta.env.VITE_SITE_URL}/order/${params.id}`
         return seo({
-            title: `Order number: ${params.id} | ${site.name}`,
-            description: `Comanda numarul ${params.id} de pe site!`,
+            title: `Numărul comenzii: ${params.id} | ${site.name}`,
+            description: `Comanda numărul ${params.id} de pe site!`,
             canonical,
             type: "website",
         })
@@ -38,9 +42,9 @@ export const Route = createFileRoute('/orders/$id')({
 })
 
 function RouteComponent() {
-    return <div className='p-6'>
-
-
-        <OrderDetailsPage />
-    </div>
+    return (
+        <div className='p-6'>
+            <OrderDetailsPage />
+        </div>
+    )
 }

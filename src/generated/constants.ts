@@ -3,33 +3,33 @@ export const generatedData = {
     "categories_connection": {
       "nodes": [
         {
-          "updatedAt": "2026-06-27T19:08:49.106Z",
+          "updatedAt": "2026-06-29T19:59:06.246Z",
           "name": "barbati",
           "visible": true,
           "seo": {
-            "name": "barbati",
-            "description": "Haine pentru barbati diferite modele.",
+            "name": "barbatii",
+            "description": "Haine pentru barbati alese special pentru tine",
             "media": {
-              "url": "/uploads/a7d3b4a0_225c_45dc_a00e_d415af242bcb_a00db9592d.png"
+              "url": "https://orderly-wonder-8bfec8c76b.media.strapiapp.com/ALDENO_6_TH_OCT_1519_5a401697da.webp"
             }
           },
           "media": {
-            "url": "/uploads/a7d3b4a0_225c_45dc_a00e_d415af242bcb_a00db9592d.png"
+            "url": "https://orderly-wonder-8bfec8c76b.media.strapiapp.com/ALDENO_6_TH_OCT_1519_5a401697da.webp"
           },
           "sub_categories_connection": {
             "nodes": [
               {
-                "updatedAt": "2026-06-27T19:09:19.107Z",
+                "updatedAt": "2026-06-29T20:00:47.501Z",
                 "name": "tricouri",
                 "seo": {
-                  "name": "tricouri",
-                  "description": "tricouri pentru barbati cu coaie mari",
+                  "name": "tricouru",
+                  "description": "Tricouri barbatesti cu modele si designe care sa te completeze.",
                   "media": {
-                    "url": "/uploads/a7d3b4a0_225c_45dc_a00e_d415af242bcb_a00db9592d.png"
+                    "url": "https://orderly-wonder-8bfec8c76b.media.strapiapp.com/0b0097e829f747f68838461f21fdd689_f7d663d1a7.webp"
                   }
                 },
                 "media": {
-                  "url": "/uploads/a7d3b4a0_225c_45dc_a00e_d415af242bcb_a00db9592d.png"
+                  "url": "https://orderly-wonder-8bfec8c76b.media.strapiapp.com/0b0097e829f747f68838461f21fdd689_f7d663d1a7.webp"
                 }
               }
             ]
@@ -40,12 +40,8 @@ export const generatedData = {
     "colors_connection": {
       "nodes": [
         {
-          "color_code": "#0e0e0e",
+          "color_code": "#151515",
           "name": "negru"
-        },
-        {
-          "color_code": "#ededed",
-          "name": "alb"
         }
       ]
     },
@@ -53,33 +49,22 @@ export const generatedData = {
       "nodes": [
         {
           "name": "XS"
-        },
-        {
-          "name": "M"
         }
       ]
     }
   },
   "sitemapProducts": [
     {
-      "slug": "tricou-skets",
-      "updateAt": "2026-06-27T19:11:41.927Z"
-    },
-    {
-      "slug": "tricou-dicky",
-      "updateAt": "2026-06-29T17:05:43.902Z"
+      "slug": null,
+      "updateAt": "2026-06-29T20:04:15.070Z"
     }
   ]
 } as const;
 
      export const productSitemap = [
   {
-    "slug": "tricou-skets",
-    "updateAt": "2026-06-27T19:11:41.927Z"
-  },
-  {
-    "slug": "tricou-dicky",
-    "updateAt": "2026-06-29T17:05:43.902Z"
+    "slug": null,
+    "updateAt": "2026-06-29T20:04:15.070Z"
   }
 ] as const;
 
