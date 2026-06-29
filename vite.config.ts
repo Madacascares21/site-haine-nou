@@ -10,7 +10,9 @@ import { getSitemap } from '#/lib/sitemap'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
-  plugins: [devtools(),    generateSitemap(await getSitemap()),, tailwindcss(), tanstackStart(), viteReact(),    netlify(),],
+  plugins: [devtools(),   
+     generateSitemap(await getSitemap()),
+      tailwindcss(), tanstackStart(), viteReact(),    netlify(),],
 })
 
 export default config

@@ -16,27 +16,60 @@ import { useCartProducts } from "../hook";
 import { useCartStore } from "../store";
 
 export default function CartSheet() {
+    // const {
+    //     items,
+    //     addItem,
+    //     reduceItem,
+    //     removeItem,
+    //     clear,
+    //     products,
+    //     queryResult,
+    //     isLoading,
+    // } = useCartProducts();
+    // const { isOpen, openCart, closeCart } = useCartStore();
+
+    // const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+    // const isAnyLoading = productResults.some((result) => result.isLoading);
+
+    // // 2. Updated Dynamic Financial Calculations (Filters out unavailable items)
+    // const subtotal = items.reduce((sum, item, index) => {
+    //     const queryResult = productResults[index];
+    //     const product = queryResult?.data?.products_connection?.nodes[0];
+    //     const variant = product?.variants_connection?.nodes[0];
+
+    //     // Check availability state (Fallback to true while loading)
+    //     const isAvailable = variant?.available ?? true;
+    //     if (!isAvailable) return sum;
+
+    //     const price = product?.pricing?.final_price ?? 0;
+    //     return sum + price * item.quantity;
+    // }, 0);
+
+    // // Mock calculations for extra pricing details
+    // const shippingCost = 0;
+    // const estimatedTax = subtotal * 0;
+    // const totalCost = subtotal + shippingCost + estimatedTax;
     const {
         items,
         addItem,
         reduceItem,
         removeItem,
         clear,
-        productResults,
+        products,
+        queryResult,
         isLoading,
     } = useCartProducts();
     const { isOpen, openCart, closeCart } = useCartStore();
 
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-    const isAnyLoading = productResults.some((result) => result.isLoading);
+    const isAnyLoading = queryResult.isLoading || queryResult.isFetching;
 
-    // 2. Updated Dynamic Financial Calculations (Filters out unavailable items)
-    const subtotal = items.reduce((sum, item, index) => {
-        const queryResult = productResults[index];
-        const product = queryResult?.data?.products_connection?.nodes[0];
-        const variant = product?.variants_connection?.nodes[0];
+    const subtotal = products.reduce((sum, item) => {
+        const product = item.product;
+        const variant = product?.variants_connection?.nodes?.find(
+            (v) => v.documentId === item.variantId
+        );
 
-        // Check availability state (Fallback to true while loading)
         const isAvailable = variant?.available ?? true;
         if (!isAvailable) return sum;
 
@@ -44,7 +77,6 @@ export default function CartSheet() {
         return sum + price * item.quantity;
     }, 0);
 
-    // Mock calculations for extra pricing details
     const shippingCost = 0;
     const estimatedTax = subtotal * 0;
     const totalCost = subtotal + shippingCost + estimatedTax;
@@ -84,18 +116,27 @@ export default function CartSheet() {
                         </div>
                     ) : (
                         <div className="space-y-4">
-                            {items.map((item, index) => {
-                                const queryResult = productResults[index];
-                                const serverData = queryResult?.data;
-                                const isLoading = queryResult?.isLoading;
-                                const product = serverData?.products_connection.nodes[0];
-                                const variant = product?.variants_connection.nodes[0];
+                            {products.map((item, index) => {
+                                // const queryResult = productResults[index];
+                                // const serverData = queryResult?.data;
+                                // const isLoading = queryResult?.isLoading;
+                                // const product = serverData?.products_connection.nodes[0];
+                                // const variant = product?.variants_connection.nodes[0];
+
+                                // const productName = product?.name || "Loading product...";
+                                // const imageUrl = variant?.media[0]?.url;
+                                // const productPrice = product?.pricing.final_price;
+
+                                // // Dynamic availability check from your schema payload
+                                // const isAvailable = variant?.available ?? true;
+                                const product = item.product;
+                                const variant = product?.variants_connection?.nodes?.find(
+                                    (v) => v.documentId === item.variantId
+                                );
 
                                 const productName = product?.name || "Loading product...";
-                                const imageUrl = variant?.media[0]?.url;
-                                const productPrice = product?.pricing.final_price;
-
-                                // Dynamic availability check from your schema payload
+                                const imageUrl = variant?.media?.[0]?.url;
+                                const productPrice = product?.pricing?.final_price;
                                 const isAvailable = variant?.available ?? true;
 
                                 return (

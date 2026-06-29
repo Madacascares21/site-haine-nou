@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "build": " pnpm run generate && vite build && cp ./public/sitemap.xml ./dist/client/sitemap.xml",
+
+    "build": "pnpm generate && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "generate": "tsx src/scripts/generateData.ts",

@@ -32,7 +32,7 @@ export const Route = createFileRoute('/product/$slug')({
 
 
     },
-    pendingComponent: () => <div aria-label='Pagina se incarca...' className='text-center py-20'>Loading...</div>,
+    pendingComponent: () => <div aria-label='Pagina se incarca...' className='text-center py-20 flex-1 min-h-screen w-full '>Loading...</div>,
     // head: ({ loaderData }) => ({
     //     meta: [
     //         ...seo({
@@ -54,15 +54,54 @@ export const Route = createFileRoute('/product/$slug')({
     head: ({ loaderData, params }) => {
 
         const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.slug}`
-        return seo({
+        const standardSeo = seo({
             title: `${loaderData?.name} | ${site.name}`,
             description: loaderData?.seo?.description ??
-                `${loaderData?.name}. ${loaderData?.description.slice(0, 150)}`,
+                `${loaderData?.name}. ${loaderData?.description?.slice(0, 150)}`,
             image: loaderData?.seo?.media?.url,
             canonical,
             type: "product",
         })
-    }
+
+        // Dacă nu avem date din loader, returnăm doar SEO standard
+        if (!loaderData) return standardSeo
+
+        // 2. Construim structura JSON-LD folosind datele tale din loaderData
+        const jsonLd = {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: loaderData.name,
+            image: loaderData.seo?.media?.url,
+            description: loaderData.seo?.description || loaderData.description,
+            sku: loaderData.variants[0].name,
+            offers: {
+                '@type': 'Offer',
+                url: canonical,
+                priceCurrency: 'RON', // Modifică în USD/EUR în funcție de magazin
+                price: loaderData.pricing.final_price,
+                itemCondition: 'https://schema.org',
+                availability: loaderData.variants[0].available
+                    ? 'https://schema.org'
+                    : 'https://schema.org',
+            },
+        }
+
+        const meta = Array.isArray(standardSeo) ? standardSeo : standardSeo.meta || []
+        const links = Array.isArray(standardSeo) ? [] : standardSeo.links || []
+
+        return {
+            meta: [
+                ...meta,
+                {
+                    tagName: 'script',
+                    type: 'application/ld+json',
+                    innerHTML: JSON.stringify(jsonLd),
+                },
+            ],
+            links,
+        }
+    },
+    staleTime: 10_000 * 6 * 5
 })
 
 function RouteComponent() {
@@ -76,7 +115,7 @@ function RouteComponent() {
     const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(firstVariant || allVariants[0])
     const [selectedImage, setSelectedImage] = useState(0)
     const { addItem } = useCartStore()
-    const {  openCart} = useCartStore();
+    const { openCart } = useCartStore();
 
     // inside RouteComponent
     useEffect(() => {

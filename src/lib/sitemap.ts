@@ -11,7 +11,7 @@ export type TRoutes = FileRouteTypes["fullPaths"];
 
 // Define your sitemap
 const sitemap: Sitemap<TRoutes> = {
-    siteUrl: "https://liliana-cusaturi.netlify.app",
+    siteUrl: process.env.VITE_SITE_URL || "http://localhost:3000",
     defaultPriority: 0.5,
     routes: {
         "/": {

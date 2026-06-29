@@ -45,11 +45,16 @@ export function CheckoutForm() {
 
         onSubmit: async ({ value }) => {
 
+
+            if (items.length === 0) {
+                return  toast.error("Trebuie sa ai cel putin un produs in cos!")
+            }
+
             const response = await createOrderServerFn({ data: { ...value, cartItems: items } })
             if (response.success) {
                 toast.success(response.message)
                 navigate({
-                    to: '/order',
+                    to: '/orders',
                     reloadDocument: true
                 });
             } else {

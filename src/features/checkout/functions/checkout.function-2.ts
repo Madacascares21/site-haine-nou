@@ -1,6 +1,6 @@
 import { db } from "#/db";
 import { cartItems, order } from "#/db/schema";
-import { documentIdToProductsServerFn } from "#/features/Products/functions/product.function";
+import { batchProductsServerFn } from "#/features/Products/functions/product.function";
 import { getSession } from "#/lib/auth.functions";
 import { eq } from "drizzle-orm";
 import type { OrderFields } from "../type";
@@ -20,21 +20,47 @@ export const createOrder = async (data: OrderFields) => {
     }
 
 
-    const rawProducts = await Promise.all(
-        data.cartItems.map(async (item) => {
-            const res = await documentIdToProductsServerFn({
-                data: { productId: item.productId, variantId: item.variantId }
-            })
+    // const rawProducts = await Promise.all(
+    //     data.cartItems.map(async (item) => {
+    //         const res = await batchProductsServerFn({
+    //             data: { items:item }
+    //         })
 
-            const { variants_connection, ...product } = res.products_connection.nodes[0]
+    //         const { variants_connection, ...product } = res.products_connection.nodes[0]
 
+    //         return {
+    //             product,
+    //             variant: variants_connection.nodes[0],
+    //             quantity: item.quantity
+    //         }
+    //     })
+    // )
+
+    const getProducts = async () => {
+
+        const items = data.cartItems.map((item) => {
+            const { quantity, ...rest } = item
+            return rest
+        })
+        const res = await batchProductsServerFn({
+            data: { items }
+
+        })
+        return data.cartItems.map((item) => {
+            const product = res.products_connection.nodes.filter((a) => a.documentId === item.productId)[0]
+            const variant = product.variants_connection.nodes.filter((a) => a.documentId === item.variantId)[0]
             return {
                 product,
-                variant: variants_connection.nodes[0],
+                variant,
                 quantity: item.quantity
             }
+
         })
-    )
+
+    }
+    const rawProducts = await getProducts()
+
+
 
     const subtotal = rawProducts.reduce((acc, item) => {
         const price = parseFloat(Number(item.product.pricing.final_price).toFixed(2));

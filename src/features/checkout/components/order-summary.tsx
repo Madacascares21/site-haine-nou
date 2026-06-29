@@ -6,26 +6,31 @@ import { AlertCircle, ImageOff, Loader2 } from "lucide-react";
 export function OrderSummary() {
   const {
     items,
-    productResults,
+    products,
     isLoading,
+    queryResult
   } = useCartProducts();
 
   // 2. Dynamic Financial Calculations (Ignores unavailable items explicitly)
-  const subtotal = items.reduce((sum, item, index) => {
-    const queryResult = productResults[index];
-    const product = queryResult?.data?.products_connection?.nodes[0];
-    const variant = product?.variants_connection?.nodes[0];
+  const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+  const isAnyLoading = queryResult.isLoading || queryResult.isFetching;
+
+  const subtotal = products.reduce((sum, item) => {
+    const product = item.product;
+    const variant = product?.variants_connection?.nodes?.find(
+      (v) => v.documentId === item.variantId
+    );
 
     const isAvailable = variant?.available ?? true;
-    if (!isAvailable) return sum; // Skip pricing accumulation
+    if (!isAvailable) return sum;
 
     const price = product?.pricing?.final_price ?? 0;
     return sum + price * item.quantity;
   }, 0);
 
-  // Configurable delivery rule (e.g., Free delivery over 150 RON, otherwise 24.99 RON)
-  const shipping = 0;
-  const total = subtotal + shipping;
+  const shippingCost = 0;
+  const estimatedTax = subtotal * 0;
+  const totalCost = subtotal + shippingCost + estimatedTax;
 
   return (
     <div className="rounded-xl border border-border bg-card p-6 relative overflow-hidden">
@@ -42,13 +47,14 @@ export function OrderSummary() {
       </p>
 
       <ul className="mt-6 flex flex-col gap-5">
-        {items.map((item, index) => {
-          const queryResult = productResults[index];
-          const serverData = queryResult?.data;
+        {products.map((item, index) => {
+          // const queryResultd = queryResult[index];
           const isLoading = queryResult?.isLoading;
 
-          const product = serverData?.products_connection?.nodes[0];
-          const variant = product?.variants_connection?.nodes[0];
+          const product = item.product
+          const variant = product?.variants_connection?.nodes?.find(
+            (v) => v.documentId === item.variantId
+          );
 
           const productName = product?.name || "Se încarcă produsul...";
           const imageUrl = variant?.media[0]?.url;
@@ -145,7 +151,7 @@ export function OrderSummary() {
         <div className="flex justify-between">
           <dt className="text-muted-foreground">Livrare</dt>
           <dd className="font-medium text-card-foreground">
-            {shipping === 0 ? "Gratuit" : formatPrice(shipping)}
+            {shippingCost === 0 ? "Gratuit" : formatPrice(shippingCost)}
           </dd>
         </div>
       </dl>
@@ -154,7 +160,7 @@ export function OrderSummary() {
 
       <div className="flex items-baseline justify-between">
         <span className="text-base font-semibold text-card-foreground">Total</span>
-        <span className="text-xl font-bold text-card-foreground">{formatPrice(total)}</span>
+        <span className="text-xl font-bold text-card-foreground">{formatPrice(totalCost)}</span>
       </div>
     </div>
   );

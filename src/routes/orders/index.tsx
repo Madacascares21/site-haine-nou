@@ -8,6 +8,7 @@ import { createFileRoute } from '@tanstack/react-router'
 export const Route = createFileRoute('/orders/')({
     beforeLoad: async () => await requireAuth(),
     component: RouteComponent,
+    pendingComponent: () => <main className='flex-1 w-full h-full min-h-screen '><span>Loading...</span></main>,
     loader: async () => {
         const data = await getOrderListServerFn()
         return data
@@ -21,8 +22,8 @@ export const Route = createFileRoute('/orders/')({
             canonical,
             type: "website",
         })
-    }
-
+    },
+    pendingMs:0
 
 })
 

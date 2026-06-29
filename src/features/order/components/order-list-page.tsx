@@ -34,7 +34,7 @@ const statusConfigs = {
     },
 }
 
-const orderRoute = getRouteApi("/order/")
+const orderRoute = getRouteApi("/orders/")
 
 export default function OrdersList() {
     const data = orderRoute.useLoaderData()
@@ -72,7 +72,7 @@ export default function OrdersList() {
                         return (
                             <Link
                                 key={order.id}
-                                to="/order/$id"
+                                to="/orders/$id"
                                 params={{ id: String(order.id) }}
                             >
 

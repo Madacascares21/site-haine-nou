@@ -203,9 +203,50 @@ query (
 }
 `
 
-export const GET_PRODUCT_BY_DOCUMENT_ID = gql`
-query ($productId: ID, $variantId: ID) {
-  products_connection(filters: { documentId: { eq: $productId } }) {
+// export const GET_PRODUCT_BY_DOCUMENT_ID = gql`
+// query ($productId: ID, $variantId: ID) {
+//   products_connection(filters: { documentId: { eq: $productId } }) {
+//     nodes {
+//       documentId
+//       name
+//       slug
+//       pricing {
+//         original_price
+//         discounted_price
+//         final_price
+//       }
+//       categories {
+//         name
+//       }
+//       sub_categories {
+//         name
+//       }
+//       variants_connection(filters: { documentId: { eq: $variantId } }) {
+//         nodes {
+//              updatedAt
+//       name
+//       available
+//         documentId
+//         media {
+//           url
+//         }
+//         size {
+//           name
+//         }
+//         color {
+//           color_code
+//           name
+//         }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// `
+
+export const GET_BATCH_PRODUCTS_QUERY = gql`query GetBatchProducts($productIds: [ID!], $variantIds: [ID!]) {
+  products_connection(filters: { documentId: { in: $productIds } }) {
     nodes {
       documentId
       name
@@ -221,29 +262,28 @@ query ($productId: ID, $variantId: ID) {
       sub_categories {
         name
       }
-      variants_connection(filters: { documentId: { eq: $variantId } }) {
+      # This will now filter and return ONLY the variants that are in the user's cart
+      variants_connection(filters: { documentId: { in: $variantIds } }) {
         nodes {
-             updatedAt
-      name
-      available
-        documentId
-        media {
-          url
-        }
-        size {
+          updatedAt
           name
-        }
-        color {
-          color_code
-          name
-        }
+          available
+          documentId
+          media {
+            url
+          }
+          size {
+            name
+          }
+          color {
+            color_code
+            name
+          }
         }
       }
     }
   }
-}
-
-`
+}`
 
 
 

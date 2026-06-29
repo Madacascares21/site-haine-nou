@@ -11,6 +11,7 @@ export const createOrderServerFn = createServerFn({ method: "POST" }).validator(
 
 
     } catch (error) {
+        console.log(error)
         if (error instanceof Error) {
             return { success: false, message: error.message };
         }

@@ -6,6 +6,7 @@ import { seo } from '#/lib/seo';
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/orders/$id')({
+    pendingComponent: () => <main className='flex-1 w-full h-full min-h-screen '><span>Loading...</span></main>,
     component: RouteComponent,
     beforeLoad: async () => await requireAuth(),
     // validateSearch: orderSearchSchema,
@@ -31,7 +32,9 @@ export const Route = createFileRoute('/orders/$id')({
             canonical,
             type: "website",
         })
-    }
+    },
+    pendingMs: 0
+
 })
 
 function RouteComponent() {

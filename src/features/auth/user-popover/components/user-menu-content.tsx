@@ -48,7 +48,7 @@ export function UserMenuContent({
           Settings
         </Button>
         <Link
-          to="/order"
+          to="/orders"
           className={cn(buttonVariants({
 
             variant: "ghost"

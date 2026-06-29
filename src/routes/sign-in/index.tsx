@@ -13,6 +13,8 @@ export const Route = createFileRoute('/sign-in/')({
     }
   },
   component: AuthenticationPage,
+      pendingComponent: () => <div aria-label='Pagina se incarca...' className='text-center py-20 flex-1 min-h-screen w-full '>Loading...</div>,
+
   head: () => {
   
           const canonical = `${import.meta.env.VITE_SITE_URL}/sign-in`

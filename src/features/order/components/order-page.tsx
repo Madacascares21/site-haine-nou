@@ -13,7 +13,7 @@ import { getRouteApi } from '@tanstack/react-router'
 import { FileText, Info, Target } from 'lucide-react'
 
 export default function OrderDetails() {
-  const data = getRouteApi('/order/$id').useLoaderData()
+  const data = getRouteApi('/orders/$id').useLoaderData()
   const order = data
 
   return (
