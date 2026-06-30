@@ -173,7 +173,7 @@ function RouteComponent() {
                                     size="lg"
                                     className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
                                     onClick={() => {
-                                        addItem(product.documentId!, selectedVariant.documentId!)
+                                        addItem(product.documentId!, selectedVariant.documentId!,selectedVariant.qty)
                                         openCart()
                                     }}
                                     disabled={!!(selectedVariant.qty <= 0)}
