@@ -2,7 +2,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Skeleton } from "#/components/ui/skeleton";
 import type { CardProductResponseData } from "../../type";
 import ProductCard from "../product-card";
-
+import Autoplay from "embla-carousel-autoplay"
 const CarouselProductList = ({ isPending, data }: { isPending: boolean, data: CardProductResponseData | undefined }) => {
 
 
@@ -10,7 +10,7 @@ const CarouselProductList = ({ isPending, data }: { isPending: boolean, data: Ca
 
     if (isPending) {
         return (
-            <Carousel className="w-full">
+            <Carousel className="w-full" >
                 <CarouselContent>
                     {Array.from({ length: 8 }).map((i, idx) => (
                         <CarouselItem key={idx} className="basis-1/2  md:basis-1/3 lg:basis-1/4 ">
@@ -52,7 +52,15 @@ const CarouselProductList = ({ isPending, data }: { isPending: boolean, data: Ca
         )
     }
     return (
-        <Carousel className="w-full">
+        <Carousel className="w-full" opts={{
+            align: "start",
+            loop: true,
+        }} plugins={[
+            Autoplay({
+                delay: 3000,
+                stopOnInteraction: true
+            }),
+        ]}>
             <CarouselContent className="">
                 {data.products_connection.nodes.map((product) => (
                     <CarouselItem key={product.name} className="basis-1/2   md:basis-1/3 lg:basis-1/4  ">
