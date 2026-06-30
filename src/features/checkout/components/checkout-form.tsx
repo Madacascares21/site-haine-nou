@@ -47,7 +47,7 @@ export function CheckoutForm() {
 
 
             if (items.length === 0) {
-                return  toast.error("Trebuie sa ai cel putin un produs in cos!")
+                return toast.error("Trebuie sa ai cel putin un produs in cos!")
             }
 
             const response = await createOrderServerFn({ data: { ...value, cartItems: items } })

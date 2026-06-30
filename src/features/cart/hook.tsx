@@ -17,6 +17,7 @@ export function useCartProducts() {
                     items: items.map((item) => ({
                         productId: item.productId,
                         variantId: item.variantId,
+                        quantity:item.quantity
                     })),
                 },
             });

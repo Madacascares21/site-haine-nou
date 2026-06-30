@@ -11,6 +11,8 @@ import { render } from "@react-email/components";
 import type { ReactNode } from "react";
 import { site } from "#/features/header/constant";
 import AdminOrderEmail from "../components/admin-email-tamplate";
+import { strapi } from "#/lib/strapi";
+import { updateVariantQTY } from "#/features/Products/graphql/product.query";
 export const createOrder = async (data: OrderFields) => {
 
 
@@ -19,54 +21,53 @@ export const createOrder = async (data: OrderFields) => {
         throw new Error("User not authenticated");
     }
 
-
-    // const rawProducts = await Promise.all(
-    //     data.cartItems.map(async (item) => {
-    //         const res = await batchProductsServerFn({
-    //             data: { items:item }
-    //         })
-
-    //         const { variants_connection, ...product } = res.products_connection.nodes[0]
-
-    //         return {
-    //             product,
-    //             variant: variants_connection.nodes[0],
-    //             quantity: item.quantity
-    //         }
-    //     })
-    // )
-
     const getProducts = async () => {
-
-        const items = data.cartItems.map((item) => {
-            const { quantity, ...rest } = item
-            return rest
-        })
         const res = await batchProductsServerFn({
-            data: { items }
+            data: { items: data.cartItems }
+        });
 
-        })
-        return data.cartItems.map((item) => {
-            const product = res.products_connection.nodes.filter((a) => a.documentId === item.productId)[0]
-            const variant = product.variants_connection.nodes.filter((a) => a.documentId === item.variantId)[0]
-            return {
-                product,
-                variant,
-                quantity: item.quantity
-            }
+        const products = await Promise.all(
+            data.cartItems.map(async (item) => {
+                const product = res.products_connection.nodes.find(
+                    (a) => a.documentId === item.productId
+                );
 
-        })
+                const variant = product?.variants_connection.nodes.find(
+                    (a) => a.documentId === item.variantId
+                );
 
-    }
+                if (!product || !variant) {
+                    throw new Error("Product or variant not found");
+                }
+
+                const newQty = variant.qty - item.quantity;
+
+                if (newQty < 0 || undefined) {
+                    throw Error("Unul dintre produse nu este disponibil!")
+                }
+
+                await strapi.request(updateVariantQTY, {
+                    documentId: item.variantId,
+                    qty: newQty
+                });
+
+                return {
+                    product,
+                    variant,
+                    quantity: item.quantity
+                };
+            })
+        );
+
+        return products;
+    };
     const rawProducts = await getProducts()
 
 
-
     const subtotal = rawProducts.reduce((acc, item) => {
-        const price = parseFloat(Number(item.product.pricing.final_price).toFixed(2));
+        const price = Number(item.product.pricing.final_price);
         return acc + price * item.quantity;
     }, 0);
-
     const itemsInJSON = JSON.stringify(rawProducts)
 
     const [newOrder] = await db

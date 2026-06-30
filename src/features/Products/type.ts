@@ -33,6 +33,7 @@ export interface ProductPrice {
 
 export interface ProductVariant {
     available: boolean
+    qty: number
     documentId?: string
     name: string
     updatedAt: string

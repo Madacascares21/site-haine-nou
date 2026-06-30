@@ -23,7 +23,7 @@ type CartStore = {
   toggleCart: () => void;
 
   setAuthenticated: (auth: boolean, dbItems?: CartItem[]) => void;
-  addItem: (productId: string, variantId: string) => void;
+  addItem: (productId: string, variantId: string, maxQty?: number) => void;
   reduceItem: (productId: string, variantId: string) => void;
   removeItem: (productId: string, variantId: string) => void;
   clear: () => void;
@@ -32,21 +32,30 @@ type CartStore = {
 function applyAdd(
   items: CartItem[],
   productId: string,
-  variantId: string
+  variantId: string,
+  maxQty: number = Infinity
 ): CartItem[] {
   const existing = items.find(
     (i) => i.productId === productId && i.variantId === variantId
   );
+  if (existing && existing.quantity >= maxQty) {
+    return items; // stop increasing
+  }
 
   if (existing) {
+    const newQty = Math.min(existing.quantity + 1, maxQty);
+
     return items.map((i) =>
       i.productId === productId && i.variantId === variantId
-        ? { ...i, quantity: i.quantity + 1 }
+        ? { ...i, quantity: newQty }
         : i
     );
   }
 
-  return [...items, { productId, variantId, quantity: 1 }];
+  return [
+    ...items,
+    { productId, variantId, quantity: Math.min(1, maxQty) },
+  ];
 }
 
 function applyReduce(
@@ -92,18 +101,16 @@ export const useCartStore = create<CartStore>()(
         });
       },
 
-      addItem: (productId, variantId) => {
+      addItem: (productId, variantId, maxQty) => {
         set((state) => ({
-          items: applyAdd(state.items, productId, variantId),
+          items: applyAdd(state.items, productId, variantId, maxQty),
         }));
 
         const { isAuthenticated, items } = get();
 
         if (isAuthenticated) {
           const item = items.find(
-            (i) =>
-              i.productId === productId &&
-              i.variantId === variantId
+            (i) => i.productId === productId && i.variantId === variantId
           );
 
           if (item) {

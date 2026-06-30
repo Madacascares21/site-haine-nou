@@ -80,7 +80,8 @@ const batchProductsSchema = z.object({
     items: z.array(
         z.object({
             productId: z.string(),
-            variantId: z.string().optional(), // optional in case some products don't have variants
+            variantId: z.string(),
+            quantity: z.number().min(0)
         })
     )
 });

@@ -176,9 +176,9 @@ function RouteComponent() {
                                         addItem(product.documentId!, selectedVariant.documentId!)
                                         openCart()
                                     }}
-                                    disabled={!selectedVariant.available}
+                                    disabled={!!(selectedVariant.qty <= 0)}
                                 >
-                                    {selectedVariant.available ? "Cumpara Acum!" : "Produs Indisponibil"}
+                                    {selectedVariant.qty <= 0 ? "Produs Indisponibil" :  "Cumpara Acum!"}
                                 </Button>
                             </div>
 

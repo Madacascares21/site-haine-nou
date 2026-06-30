@@ -8,7 +8,7 @@ const nodes = `
       categories {
         name
       }
-                updatedAt
+        updatedAt
 
       sub_categories {
         name
@@ -29,6 +29,7 @@ const nodes = `
         documentId
         updatedAt
         available
+        qty
         name
         media {
           url
@@ -101,6 +102,7 @@ seo{
       variants {
       name
         documentId
+        qty
         available
         updatedAt
         media {
@@ -179,6 +181,7 @@ query (
       variants {
       updatedAt
       name
+      qty
       available
         documentId
         media {
@@ -245,6 +248,20 @@ query (
 
 // `
 
+export const updateVariantQTY = gql`  mutation UpdateVariantQty($documentId: ID!, $qty: Int!) {
+    updateVariant(
+      documentId: $documentId
+      data: {
+        qty: $qty
+      }
+    ) {
+      documentId
+      qty
+      updatedAt
+    }
+  }`
+
+
 export const GET_BATCH_PRODUCTS_QUERY = gql`query GetBatchProducts($productIds: [ID!], $variantIds: [ID!]) {
   products_connection(filters: { documentId: { in: $productIds } }) {
     nodes {
@@ -268,6 +285,7 @@ export const GET_BATCH_PRODUCTS_QUERY = gql`query GetBatchProducts($productIds: 
           updatedAt
           name
           available
+          qty
           documentId
           media {
             url
