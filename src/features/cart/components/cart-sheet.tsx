@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useCartProducts } from "../hook";
 import { useCartStore } from "../store";
+import { toast } from "sonner";
 
 export default function CartSheet() {
   const {
@@ -134,11 +135,10 @@ export default function CartSheet() {
                 return (
                   <div
                     key={`${item.productId}-${item.variantId}`}
-                    className={`flex gap-4 p-4 rounded-xl border bg-card text-card-foreground shadow-sm relative overflow-hidden transition-all ${
-                      !isAvailable
-                        ? "opacity-60 grayscale-[35%] bg-muted/40 border-dashed"
-                        : ""
-                    }`}
+                    className={`flex gap-4 p-4 rounded-xl border bg-card text-card-foreground shadow-sm relative overflow-hidden transition-all ${!isAvailable
+                      ? "opacity-60 grayscale-[35%] bg-muted/40 border-dashed"
+                      : ""
+                      }`}
                   >
                     {isAnyLoading && (
                       <div className="absolute inset-0 bg-background/50 backdrop-blur-sm flex items-center justify-center z-10">
@@ -177,11 +177,10 @@ export default function CartSheet() {
 
                         {productPrice && (
                           <p
-                            className={`text-sm font-medium ${
-                              !isAvailable
-                                ? "line-through text-muted-foreground/70"
-                                : "text-muted-foreground"
-                            }`}
+                            className={`text-sm font-medium ${!isAvailable
+                              ? "line-through text-muted-foreground/70"
+                              : "text-muted-foreground"
+                              }`}
                           >
                             ${productPrice.toFixed(2)}
                           </p>
@@ -202,9 +201,8 @@ export default function CartSheet() {
                       {/* ACTIONS */}
                       <div className="flex items-center justify-between mt-2">
                         <div
-                          className={`flex items-center border rounded-lg bg-background p-0.5 shadow-sm ${
-                            !isAvailable ? "opacity-50" : ""
-                          }`}
+                          className={`flex items-center border rounded-lg bg-background p-0.5 shadow-sm ${!isAvailable ? "opacity-50" : ""
+                            }`}
                         >
                           <button
                             className="p-1 rounded-md hover:bg-muted"
@@ -224,12 +222,16 @@ export default function CartSheet() {
 
                           <button
                             className="p-1 rounded-md hover:bg-muted"
-                            onClick={() =>
+                            onClick={() => {
+
                               addItem(
                                 item.productId,
                                 item.variantId,
                                 stockQty
                               )
+
+                            }
+
                             }
                             disabled={
                               !isAvailable ||

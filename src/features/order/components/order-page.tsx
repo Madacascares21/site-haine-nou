@@ -19,7 +19,7 @@ export default function OrderDetails() {
   return (
     <main className='flex-1 min-h-screen'>
       <TooltipProvider>
-        <Container>
+        <Container className='p-0'>
           <Card className="p-8">
 
             {/* HEADER */}
@@ -40,7 +40,7 @@ export default function OrderDetails() {
 
                 <div className="flex gap-2.5">
 
-                  <Button variant="outline" className="h-10 gap-2">
+                  {/* <Button variant="outline" className="h-10 gap-2">
                     <FileText className="w-4 h-4 text-muted-foreground" />
                     Factură
                   </Button>
@@ -48,7 +48,7 @@ export default function OrderDetails() {
                   <Button className="h-10 gap-2">
                     Urmărește comanda
                     <Target className="w-4 h-4" />
-                  </Button>
+                  </Button> */}
 
                 </div>
 
@@ -59,7 +59,13 @@ export default function OrderDetails() {
                 <span>
                   Data comenzii:{' '}
                   <strong className="text-foreground font-medium">
-                    {order.createdAt.toLocaleDateString('ro-RO')}
+                    {order.createdAt.toLocaleString('ro-RO', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
                   </strong>
                 </span>
 
@@ -69,7 +75,7 @@ export default function OrderDetails() {
                     ✈
                   </span>
 
-                  Livrare estimată: „nu știu încă”
+                  Livrare estimată: „unknown”
 
                 </span>
 
@@ -80,13 +86,13 @@ export default function OrderDetails() {
             <Separator className="border-border" />
 
             {/* PRODUCTS */}
-            <CardContent className="px-0 py-6 flex flex-col gap-6">
+            <CardContent className="px-0 py-6 flex flex-col gap-6 ">
 
               {order.products.map((product) => (
 
                 <div
                   key={product.product.documentId}
-                  className="flex gap-5 items-center"
+                  className="flex gap-5 items-center "
                 >
 
                   <div className="w-16 h-16 bg-muted border border-border rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
@@ -156,7 +162,7 @@ export default function OrderDetails() {
             <Separator className="border-border" />
 
             {/* GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 pt-8">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pt-8">
 
               {/* LEFT */}
               <div className="md:col-span-7 flex flex-col justify-between gap-10">
@@ -239,7 +245,7 @@ export default function OrderDetails() {
                     </span>
 
                     <span className="text-foreground font-medium">
-                      $0
+                      {formatPrice(0)}
                     </span>
                   </div>
 
@@ -257,7 +263,7 @@ export default function OrderDetails() {
                     </span>
 
                     <span className="text-foreground font-medium">
-                      +$0
+                      {formatPrice(0)} ;)
                     </span>
                   </div>
 

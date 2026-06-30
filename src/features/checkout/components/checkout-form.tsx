@@ -17,7 +17,7 @@ import type { CheckoutFormValues } from "../type"
 
 const shippingOptions = [
     { id: "standard", label: "Livrare standard", description: "2-4 zile lucrătoare", price: 19.99 },
-    { id: "free", label: "Ridicare personala", description: "Disponibil azi", price: 0 },
+    { id: "free", label: "Livrare in Breaza", description: "Disponibil azi", price: 0 },
 ]
 
 // 1. Define the Zod schema with conditional validation for card info

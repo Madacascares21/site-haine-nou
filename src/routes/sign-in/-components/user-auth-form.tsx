@@ -16,8 +16,9 @@ import { formSchema } from "../-schemas/form-schema"
 import { useState } from "react"
 import GoogleProviderButton from "./google-provider-btn"
 
-export function UserAuthForm({}) {
+export function UserAuthForm({ }) {
   const [googleLoading, setGoogleLoading] = useState(false)
+  const previousUrl = window.location.pathname 
 
   const form = useForm({
     defaultValues: {
@@ -30,10 +31,8 @@ export function UserAuthForm({}) {
     onSubmit: async ({ value }) => {
       const { data, error } = await signIn.magicLink({
         email: value.email,
-        callbackURL: "/dashboard",
-        newUserCallbackURL: "/welcome",
+        callbackURL: `/checkout`,
         errorCallbackURL: "/error",
-        metadata: { inviteId: "123" },
       })
 
       if (!data?.status) {
