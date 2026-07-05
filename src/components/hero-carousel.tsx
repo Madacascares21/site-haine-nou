@@ -209,8 +209,9 @@ const HeroCarousel = () => {
           <CarouselItem >
             {/* Render your custom slide component here */}
             {/* <CustomSlide /> */}
-            <MainHero/>
+            <MainHero />
           </CarouselItem>
+          
         </CarouselContent>
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />

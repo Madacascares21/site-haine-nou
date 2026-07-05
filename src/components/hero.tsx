@@ -90,18 +90,18 @@ export function MainHero() {
                 </div>
 
                 {/* Partea produsului — colaj imagini */}
-                <div className="relative">
+                <div className="relative ">
                     {/* Fundal decorativ */}
                     <div className="absolute inset-x-4 bottom-6 top-10 -rotate-2 rounded-3xl bg-primary/90" />
 
-                    <div className="relative grid grid-cols-3 grid-rows-3 gap-3">
+                    <div className="relative grid grid-cols-3 grid-rows-2 gap-3">
                         {/* Imagine principală */}
                         <div className="relative col-span-2 row-span-3 overflow-hidden rounded-3xl border border-border bg-card">
                             <img
                                 src="https://orderly-wonder-8bfec8c76b.media.strapiapp.com/Whats_App_Image_2026_07_04_at_9_51_57_PM_9f7fb62b47.jpeg"
                                 alt="Hanorac VOLT Drop 004 charcoal heavyweight"
                                 width={900}
-                                height={1200}
+                                height={600}
                                 className="h-full w-full object-cover"
                             />
                             {/* Etichetă preț */}
@@ -136,7 +136,7 @@ export function MainHero() {
                             />
                         </div>
 
-                        <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
+                        {/* <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
                             <img
                                 src="https://orderly-wonder-8bfec8c76b.media.strapiapp.com/authenticfacenegru_1800x1800_7ae954e0d8.webp"
                                 alt="Prim-plan al șnururilor verde acid și al texturii fleece"
@@ -147,7 +147,7 @@ export function MainHero() {
                             <span className="absolute bottom-2 left-2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">
                                 4 culori
                             </span>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </Container>

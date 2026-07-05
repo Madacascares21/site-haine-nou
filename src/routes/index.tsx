@@ -1,3 +1,4 @@
+import { CollaborateSection } from '#/components/colab'
 import HeroCarousel from '#/components/hero-carousel'
 import CategoryBannerSection from '#/components/product-category-banner'
 import { site } from '#/features/header/constant'
@@ -30,6 +31,7 @@ function Home() {
       <NewProducts />
       <FeaturedProducts />
       <BestPrice />
+      <CollaborateSection />
     </main>
   )
 }
