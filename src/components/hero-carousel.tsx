@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel"
 import Container from "./container"
 import { Link } from "@tanstack/react-router"
+import { MainHero } from "./hero"
 
 // 1. Define the TypeScript interface for your slide data
 
@@ -207,7 +208,8 @@ const HeroCarousel = () => {
         <CarouselContent>
           <CarouselItem >
             {/* Render your custom slide component here */}
-            <CustomSlide />
+            {/* <CustomSlide /> */}
+            <MainHero/>
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious className="left-4" />
