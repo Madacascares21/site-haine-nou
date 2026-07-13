@@ -4,3 +4,4 @@ node_modules
 dist
 .nitro
 .tantsack
+pnpm-workspace.yaml
