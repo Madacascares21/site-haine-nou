@@ -206,6 +206,10 @@ export const generatedData = {
         {
           "color_code": "#151515",
           "name": "negru"
+        },
+        {
+          "color_code": "#efefef",
+          "name": "alb"
         }
       ]
     },
@@ -232,7 +236,7 @@ export const generatedData = {
     },
     {
       "slug": "tricou-imprimeu-metal-face-misterious",
-      "updateAt": "2026-06-30T14:00:52.802Z"
+      "updateAt": "2026-07-05T04:49:44.143Z"
     },
     {
       "slug": "tricou-imprimeu-breaza",
@@ -245,6 +249,10 @@ export const generatedData = {
     {
       "slug": "tricou-imprimeu-relax",
       "updateAt": "2026-06-30T14:07:11.631Z"
+    },
+    {
+      "slug": "tricou-mds-vara",
+      "updateAt": "2026-07-05T08:37:47.852Z"
     }
   ]
 } as const;
@@ -264,7 +272,7 @@ export const generatedData = {
   },
   {
     "slug": "tricou-imprimeu-metal-face-misterious",
-    "updateAt": "2026-06-30T14:00:52.802Z"
+    "updateAt": "2026-07-05T04:49:44.143Z"
   },
   {
     "slug": "tricou-imprimeu-breaza",
@@ -277,6 +285,10 @@ export const generatedData = {
   {
     "slug": "tricou-imprimeu-relax",
     "updateAt": "2026-06-30T14:07:11.631Z"
+  },
+  {
+    "slug": "tricou-mds-vara",
+    "updateAt": "2026-07-05T08:37:47.852Z"
   }
 ] as const;
 
