@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
-    "build": "pnpm generate && pnpm db:generate && pnpm db:migrate && vite build",
+    "build": "pnpm generate && pnpm db:push && vite build",
     "start": "node .output/server/index.mjs",
     "preview": "vite preview",
     "test": "vitest run",
