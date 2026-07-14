@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DUAcabCT.js";var t=e(),n=()=>(0,t.jsx)(`span`,{className:`text-6xl font-bold `,children:`No products`});export{n as notFoundComponent};
