@@ -22,10 +22,12 @@ export const Route = createFileRoute('/')({
   , component: Home
 
 })
+const env = process.env.NODE_ENV 
 
 function Home() {
   return (
     <main>
+      <span>{JSON.stringify(env)}</span>
       <HeroCarousel />
       <CategoryBannerSection />
       <NewProducts />
