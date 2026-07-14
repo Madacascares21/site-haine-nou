@@ -32,13 +32,13 @@ export function getStrapiMedia(url: string | null | undefined): string {
   }
 
   // Verificăm dacă suntem în modul de development
-  const isDev = process.env.NODE_ENV === 'development';
+  // const isDev = process.env.NODE_ENV === 'development';
 
   // URL-ul de bază pentru Strapi în local
-  const strapiUrl = import.meta.env.VITE_STRAPI_URL ;
+  const strapiUrl = import.meta.env.VITE_STRAPI_URL;
 
   // În dev adăugăm localhost, în producție lăsăm URL-ul relativ (sau adaugi domeniul de prod dacă e cazul)
-  return isDev ? `${strapiUrl}${url}` : url;
+  return `${strapiUrl}${url}` ;
 }
 
 

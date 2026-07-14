@@ -23,11 +23,13 @@ export const Route = createFileRoute('/')({
 
 })
 const env = process.env.NODE_ENV 
+const url = import.meta.env.VITE_STRAPI_URL
 
 function Home() {
   return (
     <main>
       <span>{JSON.stringify(env)}</span>
+      <span>{JSON.stringify(url)}</span>
       <HeroCarousel />
       <CategoryBannerSection />
       <NewProducts />
