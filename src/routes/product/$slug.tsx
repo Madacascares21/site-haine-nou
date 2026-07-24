@@ -58,7 +58,7 @@ export const Route = createFileRoute('/product/$slug')({
             title: `${loaderData?.name} | ${site.name}`,
             description: loaderData?.seo?.description ??
                 `${loaderData?.name}. ${loaderData?.description?.slice(0, 150)}`,
-            image: loaderData?.seo?.media?.url,
+            image: `https://cdn.auxload-store.ro${loaderData?.seo?.media?.url}`,
             canonical,
             type: "product",
         })
@@ -71,7 +71,7 @@ export const Route = createFileRoute('/product/$slug')({
             '@context': 'https://schema.org',
             '@type': 'Product',
             name: loaderData.name,
-            image: loaderData.seo?.media?.url,
+            image: `https://cdn.auxload-store.ro${loaderData.seo?.media?.url}`,
             description: loaderData.seo?.description || loaderData.description,
             sku: loaderData.variants[0].name,
             offers: {
