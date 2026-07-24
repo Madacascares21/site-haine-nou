@@ -1,160 +1,180 @@
-import { site } from "#/features/header/constant";
-import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, MapPin, Accessibility } from "lucide-react";
-// footer.config.ts
+import React from "react";
 
-export type FooterLink =
-  | { label: string; to: string; external?: false }
-
-export type FooterSocial = {
+export interface FooterLink {
   label: string;
   href: string;
-  icon: any;
-};
+  external?: boolean;
+}
 
-export const footerConfig = {
-  help: {
-    title: "Ai nevoie de ajutor?",
-    links: [
-      { label: "Serviciul Clienți", to: "/contact" },
-      { label: "Formular de contact", to: "/contact/form" },
-    ] as FooterLink[],
+export interface FooterContactItem {
+  label: string;
+  value: string;
+  copyable?: boolean;
+  href?: string;
+}
 
-    phone: {
-      label: "+40 316301973",
-      href: "tel:+40316301973",
-    },
+export interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
 
-    hours: "luni - vineri 9:00 - 16:00",
+export interface FooterBadge {
+  image: string;
+  alt: string;
+  href?: string;
+}
 
-    email: {
-      label: "info.ro@gate.shop",
-      href: "mailto:info.ro@gate.shop",
-    },
-  },
+export interface FooterConfig {
+  about?: {
+    title: string;
+    image: string;
+    imageAlt?: string;
+  };
 
-  conditions: {
-    title: "Condiții",
-    links: [
-      { label: "Politica de confidențialitate", to: "/privacy" },
-      { label: "Cookies", to: "/cookies" },
-      { label: "Termeni și condiții", to: "/terms" },
-    ] as FooterLink[],
-  },
+  contact?: {
+    title: string;
+    items: FooterContactItem[];
+  };
 
-  social: {
-    title: "Social media",
-    links: [
-      {
-        label: "Facebook",
-        href: "https://facebook.com",
-        icon: Facebook,
-      },
-      {
-        label: "Instagram",
-        href: "https://instagram.com",
-        icon: Instagram,
-      },
-      {
-        label: "YouTube",
-        href: "https://youtube.com",
-        icon: Youtube,
-      },
-    ] as FooterSocial[],
-  },
-};
+  sections: FooterSection[];
 
-export default function Footer() {
+  badges?: FooterBadge[];
+}
+
+interface FooterProps {
+  config: FooterConfig;
+}
+
+export default function Footer({ config }: FooterProps) {
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-    <footer className="bg-foreground text-black">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+    <footer className=" py-14">
+      <div
+        className="mx-auto grid max-w-7xl gap-10 px-6"
+        style={{
+          gridTemplateColumns: `1.2fr repeat(${config.sections.length}, 1fr) 0.9fr`,
+        }}
+      >
+        {/* About + Contact */}
+        <div className="space-y-10">
+          {config.about && (
+            <div>
+              <h3 className="mb-5 text-2xl font-bold">
+                {config.about.title}
+              </h3>
 
-          {/* HELP */}
-          <div>
-            <h3 className="mb-8 text-lg font-semibold">
-              {footerConfig.help.title}
+              <img
+                src={config.about.image}
+                alt={config.about.imageAlt}
+                className="h-36 w-36 rounded-full object-cover"
+              />
+            </div>
+          )}
+
+          {config.contact && (
+            <div>
+              <h3 className="mb-5 text-2xl font-bold">
+                {config.contact.title}
+              </h3>
+
+              <div className="space-y-4">
+                {config.contact.items.map((item) => (
+                  <div key={item.label}>
+                    <p className="text-sm text-gray-500">{item.label}</p>
+
+                    <div className="flex items-center gap-2">
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="font-semibold hover:underline"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <span className="font-semibold">{item.value}</span>
+                      )}
+
+                      {item.copyable && (
+                        <button
+                          onClick={() => copyToClipboard(item.value)}
+                          className="text-sm text-blue-600 hover:underline"
+                        >
+                          Copiază
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Link Sections */}
+        {config.sections.map((section) => (
+          <div key={section.title}>
+            <h3 className="mb-5 text-2xl font-bold">
+              {section.title}
             </h3>
 
-            <ul className="space-y-5 text-sm">
-              {footerConfig.help.links.map((item) =>
-                "to" in item ? (
-                  <li key={item.label}>
-                    <Link to={item.to} className="hover:underline">
-                      {item.label}
-                    </Link>
+            <div className="rounded-md bg-black/5 p-6">
+              <ul className="space-y-4">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      rel={
+                        link.external
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      className="flex items-center gap-2 hover:underline"
+                    >
+                      <span>▪</span>
+                      <span>{link.label}</span>
+                    </a>
                   </li>
-                ) : null
-              )}
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
 
-              <li className="pt-4 text-base font-bold">
-                <a href={footerConfig.help.phone.href}>
-                  {footerConfig.help.phone.label}
+        {/* Badges */}
+        {config.badges && (
+          <div className="flex flex-col items-center gap-5">
+            {config.badges.map((badge) => {
+              const image = (
+                <img
+                  src={badge.image}
+                  alt={badge.alt}
+                  className="max-w-[240px]"
+                />
+              );
+
+              return badge.href ? (
+                <a
+                  key={badge.alt}
+                  href={badge.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {image}
                 </a>
-              </li>
-
-              <li className="text-xs">
-                {footerConfig.help.hours}
-              </li>
-
-              <li className="font-semibold">
-                <a href={footerConfig.help.email.href}>
-                  {footerConfig.help.email.label}
-                </a>
-              </li>
-            </ul>
+              ) : (
+                <div key={badge.alt}>{image}</div>
+              );
+            })}
           </div>
-
-          {/* CONDITIONS */}
-          <div>
-            <h3 className="mb-8 text-lg font-semibold">
-              {footerConfig.conditions.title}
-            </h3>
-
-            <ul className="space-y-4 text-sm">
-              {footerConfig.conditions.links.map((item) => (
-                <li key={item.label}>
-                  <Link to={item.to} className="hover:underline">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* SOCIAL */}
-          <div>
-            <h3 className="mb-8 text-lg font-semibold">
-              {footerConfig.social.title}
-            </h3>
-
-            <ul className="space-y-5 text-sm">
-              {footerConfig.social.links.map(({ label, href, icon: Icon }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-3 hover:underline"
-                  >
-                    <Icon size={15} />
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-      {/* BOTTOM */}
-      <div className="border-t border-gray-300">
-        <div className="py-10 flex flex-col items-center gap-10">
-          <div className="text-2xl tracking-[0.35em]">
-            {site.name}
-          </div>
-        </div>
+        )}
       </div>
     </footer>
   );

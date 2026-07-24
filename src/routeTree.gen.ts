@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TermeniSiConditiiIndexRouteImport } from './routes/termeni-si-conditii/index'
 import { Route as SignInIndexRouteImport } from './routes/sign-in/index'
 import { Route as OrdersIndexRouteImport } from './routes/orders/index'
 import { Route as CheckoutIndexRouteImport } from './routes/checkout/index'
@@ -28,6 +29,11 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermeniSiConditiiIndexRoute = TermeniSiConditiiIndexRouteImport.update({
+  id: '/termeni-si-conditii/',
+  path: '/termeni-si-conditii/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SignInIndexRoute = SignInIndexRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/checkout/': typeof CheckoutIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/sign-in/': typeof SignInIndexRoute
+  '/termeni-si-conditii/': typeof TermeniSiConditiiIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/c/$category/{-$subCategory}': typeof CCategoryChar123SubCategoryChar125Route
 }
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/sign-in': typeof SignInIndexRoute
+  '/termeni-si-conditii': typeof TermeniSiConditiiIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/c/$category/{-$subCategory}': typeof CCategoryChar123SubCategoryChar125Route
 }
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/checkout/': typeof CheckoutIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/sign-in/': typeof SignInIndexRoute
+  '/termeni-si-conditii/': typeof TermeniSiConditiiIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/c/$category/{-$subCategory}': typeof CCategoryChar123SubCategoryChar125Route
 }
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/checkout/'
     | '/orders/'
     | '/sign-in/'
+    | '/termeni-si-conditii/'
     | '/api/auth/$'
     | '/c/$category/{-$subCategory}'
   fileRoutesByTo: FileRoutesByTo
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/orders'
     | '/sign-in'
+    | '/termeni-si-conditii'
     | '/api/auth/$'
     | '/c/$category/{-$subCategory}'
   id:
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/checkout/'
     | '/orders/'
     | '/sign-in/'
+    | '/termeni-si-conditii/'
     | '/api/auth/$'
     | '/c/$category/{-$subCategory}'
   fileRoutesById: FileRoutesById
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   CheckoutIndexRoute: typeof CheckoutIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
   SignInIndexRoute: typeof SignInIndexRoute
+  TermeniSiConditiiIndexRoute: typeof TermeniSiConditiiIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   CCategoryChar123SubCategoryChar125Route: typeof CCategoryChar123SubCategoryChar125Route
 }
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termeni-si-conditii/': {
+      id: '/termeni-si-conditii/'
+      path: '/termeni-si-conditii'
+      fullPath: '/termeni-si-conditii/'
+      preLoaderRoute: typeof TermeniSiConditiiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sign-in/': {
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutIndexRoute: CheckoutIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
   SignInIndexRoute: SignInIndexRoute,
+  TermeniSiConditiiIndexRoute: TermeniSiConditiiIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   CCategoryChar123SubCategoryChar125Route:
     CCategoryChar123SubCategoryChar125Route,

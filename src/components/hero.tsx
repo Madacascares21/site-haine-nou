@@ -7,21 +7,21 @@ export function MainHero() {
     return (
         <section className="relative overflow-hidden bg-background">
             {/* Filigran supradimensionat */}
-            <span
+            {/* <span
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[22vw] leading-none text-foreground/[0.03] lg:block"
             >
                 VOLT
-            </span>
+            </span> */}
 
             {/* Bară superioară tip marquee */}
-            <div className="border-b border-border">
+            {/* <div className="border-b border-border">
                 <Container className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary">
                     <Star className="h-3.5 w-3.5 fill-current" />
                     Colecția 004 — Polar Heavyweight — Disponibilă acum
                     <Star className="h-3.5 w-3.5 fill-current" />
                 </Container>
-            </div>
+            </div> */}
 
             <Container className="grid  grid-cols-1 items-center gap-10  lg:grid-cols-2 lg:gap-8 ">
                 {/* Partea de text */}
@@ -31,14 +31,13 @@ export function MainHero() {
                     </span>
 
                     <h1 className="mt-6 font-display text-6xl uppercase leading-[0.9] tracking-tight text-balance sm:text-7xl lg:text-8xl">
-                        Creat pentru a
+                        Nu purta ce poartă toți.
                         <br />
-                        <span className="text-primary">IMPESIONA.</span>
+                        {/* <span className="text-primary"> Fii diferit.</span> */}
                     </h1>
 
                     <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
-                        Polar periat de 500 gsm. Croială oversized, boxy. Conceput să reziste uzurii și să arate
-                        impecabil în orice moment. Aceasta este Colecția 004.
+                        Descoperă designuri originale din colecția auxload Store, creată pentru comunitatea din Breaza, și bucură-te de transport gratuit în oraș.
                     </p>
 
                     <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -55,7 +54,7 @@ export function MainHero() {
                             })}
                             className={buttonVariants({ variant: "default" })}
                         >
-                            Cumpără colecția
+                            Vezi colecția
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                         <Link
@@ -73,32 +72,32 @@ export function MainHero() {
                             })}
                             className={buttonVariants({ variant: "outline" })}
                         >
-                            Vezi lookbook-ul
+                            Colectii noi
                         </Link>
                     </div>
 
-                    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
+                    {/* <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
                         <span className="inline-flex items-center gap-2">
                             <Truck className="h-4 w-4 text-primary" />
                             Transport gratuit pentru comenzi peste 500 lei
                         </span>
-                        {/* <span className="inline-flex items-center gap-2">
+                        <span className="inline-flex items-center gap-2">
                             <Star className="h-4 w-4 fill-primary text-primary" />
                             4.9 / 5 din peste 2.300 de recenzii
-                        </span> */}
-                    </div>
+                        </span>
+                    </div> */}
                 </div>
 
                 {/* Partea produsului — colaj imagini */}
                 <div className="relative ">
                     {/* Fundal decorativ */}
-                    <div className="absolute inset-x-4 bottom-6 top-10 -rotate-2 rounded-3xl bg-primary/90" />
+                    {/* <div className="absolute inset-x-4 bottom-6 top-10 -rotate-2 rounded-3xl bg-primary/90" /> */}
 
                     <div className="relative grid grid-cols-3 grid-rows-2 gap-3">
                         {/* Imagine principală */}
                         <div className="relative col-span-2 row-span-3 overflow-hidden rounded-3xl border border-border bg-card">
                             <img
-                                src="https://orderly-wonder-8bfec8c76b.media.strapiapp.com/Whats_App_Image_2026_07_04_at_9_51_57_PM_9f7fb62b47.jpeg"
+                                src="https://cdn.auxload-store.ro/uploads/Whats_App_Image_2026_07_24_at_8_52_44_PM_385215deca.jpeg"
                                 alt="Hanorac VOLT Drop 004 charcoal heavyweight"
                                 width={900}
                                 height={600}
@@ -106,11 +105,11 @@ export function MainHero() {
                             />
                             {/* Etichetă preț */}
                             <div className="absolute bottom-4 left-4 flex items-center gap-3 rounded-2xl border border-border bg-background/85 px-4 py-3 backdrop-blur">
-                                <div className="font-display text-2xl leading-none text-primary">489 lei</div>
+                                <div className="font-display text-2xl leading-none text-primary">49.99 lei</div>
                                 <div className="text-xs uppercase leading-tight tracking-wide text-muted-foreground">
-                                    Hanorac
+                                    Tricou
                                     <br />
-                                    Heavyweight
+                                    Street walk
                                 </div>
                             </div>
                         </div>
@@ -118,7 +117,7 @@ export function MainHero() {
                         {/* Imagini secundare */}
                         <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
                             <img
-                                src="https://orderly-wonder-8bfec8c76b.media.strapiapp.com/1_org_zoom_3_d3e59b63b8.webp"
+                                src="https://cdn.auxload-store.ro/uploads/Whats_App_Image_2026_07_24_at_8_57_00_PM_85f0b2a3be.jpeg"
                                 alt="Hanorac VOLT heavyweight alb ivoire"
                                 width={400}
                                 height={400}
@@ -128,7 +127,7 @@ export function MainHero() {
 
                         <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
                             <img
-                                src="https://orderly-wonder-8bfec8c76b.media.strapiapp.com/1_org_zoom_52f8e7fe91.webp"
+                                src="https://cdn.auxload-store.ro/uploads/Whats_App_Image_2026_07_24_at_9_05_39_PM_f3e4edbc1a.jpeg"
                                 alt="Model purtând hanoracul VOLT charcoal cu gluga trasă"
                                 width={400}
                                 height={400}

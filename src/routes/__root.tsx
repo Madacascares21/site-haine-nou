@@ -68,6 +68,112 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+
+
+const footerPlaceholder = {
+  about: {
+    title: "Cine suntem?",
+    image: "https://placehold.co/200x200",
+    imageAlt: "Logo companie",
+  },
+
+  contact: {
+    title: "Cum ne găsești?",
+    items: [
+      {
+        label: "Telefon",
+        value: "0772 017 245",
+        copyable: true,
+        href: "tel:0772017245",
+      },
+      {
+        label: "Email",
+        value: "contact@exemplu.ro",
+        copyable: true,
+        href: "mailto:contact@exemplu.ro",
+      },
+      {
+        label: "Adresă",
+        value: "Str. Memorandumului nr. 10, Cluj-Napoca, România",
+      },
+    ],
+  },
+
+  sections: [
+    {
+      title: "Meniu",
+      links: [
+        {
+          label: "Acasă",
+          href: "/",
+        },
+        {
+          label: "Magazin",
+          href: "/shop",
+        },
+        {
+          label: "Despre noi",
+          href: "/despre-noi",
+        },
+        {
+          label: "Blog",
+          href: "/blog",
+        },
+        {
+          label: "Contact",
+          href: "/contact",
+        },
+        {
+          label: "Contul meu",
+          href: "/cont",
+        },
+      ],
+    },
+    {
+      title: "Informații",
+      links: [
+        {
+          label: "Termeni și condiții / Politica de confidențialitate",
+          href: "/termeni-si-conditii",
+        },
+
+        {
+          label: "Cum plasez o comandă?",
+          href: "/cum-plasez-comanda",
+        },
+        {
+          label: "Cum intru in posesia comenzii?",
+          href: "/livrare-si-plata",
+        },
+        {
+          label: "Politica de retur",
+          href: "/retur",
+        },
+        {
+          label: "ANPC",
+          href: "/anpc",
+        },
+      ],
+    },
+  ],
+
+  badges: [
+    {
+      image: "https://placehold.co/260x80?text=ANPC",
+      alt: "ANPC",
+      href: "#",
+    },
+    {
+      image: "https://placehold.co/260x80?text=SOL",
+      alt: "Soluționarea Online a Litigiilor",
+      href: "#",
+    },
+    {
+      image: "https://placehold.co/260x80?text=NETOPIA+%7C+VISA+%7C+Mastercard",
+      alt: "Metode de plată",
+    },
+  ],
+};
   return (
     <html lang="ro">
       <head>
@@ -81,7 +187,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <CartAuthSync />
 
         {children}
-        <Footer />
+        <Footer config={footerPlaceholder} />
         <Scripts />
       </body>
     </html>
