@@ -21,7 +21,7 @@ const Header = () => {
     return (
         <>
             <div className="py-2  w-full bg-primary flex items-center justify-center text-primary-foreground text-xs">
-                <span>Transport gratuit la comenzi de peste 500 de lei</span>
+                <span>Site un este in dezvoltare !!! In momentul acesta este doar in mod de testare!!!</span>
             </div>
             <header className="z-20 border-b bg-background/90  sticky top-0">
 

@@ -44,7 +44,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Link
             search={{ variant_name: variant.name }}
             params={{ slug: product.slug }}
-            replace={true}
             className="group relative flex flex-col gap-3"
             to="/product/$slug"
         >

@@ -38,9 +38,9 @@ function CategoryGrid({
                     <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition" />
 
                     <div className="relative z-10 p-4 md:p-6 flex flex-col justify-end h-full">
-                        <h3 className="text-white text-lg md:text-xl font-bold">
+                        <h2 className="text-white text-lg md:text-xl font-bold">
                             {cat.label}
-                        </h3>
+                        </h2>
 
                         <span className="mt-2 inline-block text-xs md:text-sm text-white/80 group-hover:text-white transition">
                             Explore →
