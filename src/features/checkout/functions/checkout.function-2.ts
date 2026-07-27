@@ -13,6 +13,7 @@ import { site } from "#/features/header/constant";
 import AdminOrderEmail from "../components/admin-email-tamplate";
 import { strapi } from "#/lib/strapi";
 import { updateVariantQTY } from "#/features/Products/graphql/product.query";
+import { sendResendEmail } from "#/lib/resend";
 export const createOrder = async (data: OrderFields) => {
 
 
@@ -136,7 +137,7 @@ export const createOrder = async (data: OrderFields) => {
 
     }));
 
-    const info = await sendEmail({
+    const info = await sendResendEmail({
         subject: " Comanda ta a fost inregistrata cu success",
         text: "d",
         to: session.user.email,
@@ -163,7 +164,7 @@ export const createOrder = async (data: OrderFields) => {
         payment: { method: data.payment, last4: "xxxx" }
 
     }));
-    await sendEmail({
+    await sendResendEmail({
         subject: " O noua comanda a fost inregistrata",
         text: "d",
         to: "gd69435@gmail.com",

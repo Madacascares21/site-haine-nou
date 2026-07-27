@@ -6,3 +6,4 @@ dist
 .tantsack
 pnpm-workspace.yaml
 src/generated
+.env
