@@ -1,3 +1,4 @@
+import { BrandStorySection } from '#/components/about-us'
 import { CollaborateSection } from '#/components/colab'
 import HeroCarousel from '#/components/hero-carousel'
 import CategoryBannerSection from '#/components/product-category-banner'
@@ -30,6 +31,7 @@ function Home() {
       <HeroCarousel />
       <CategoryBannerSection />
       <NewProducts />
+      <BrandStorySection/>
       <FeaturedProducts />
       <BestPrice />
       <CollaborateSection />

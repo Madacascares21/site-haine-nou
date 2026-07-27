@@ -1,5 +1,5 @@
 import { Button, buttonVariants } from "@/components/ui/button"
-import { ArrowRight, Star, Truck } from "lucide-react"
+import { ArrowRight, DollarSign, Shirt, Star, Truck } from "lucide-react"
 import Container from "./container"
 import { Link } from "@tanstack/react-router"
 
@@ -30,10 +30,10 @@ export function MainHero() {
                         Colecție Nouă
                     </span>
 
-                    <h1 className="mt-6 font-display text-6xl uppercase leading-[0.9] tracking-tight text-balance sm:text-7xl lg:text-8xl">
-                        Nu purta ce poartă toți.
+                    <h1 className="mt-6 font-display text-6xl uppercase font-bold leading-[0.9] tracking-tight text-balance sm:text-7xl lg:text-8xl">
+                        Nu purta ce 
                         <br />
-                        {/* <span className="text-primary"> Fii diferit.</span> */}
+                        <span className="text-primary">poartă toți.</span>
                     </h1>
 
                     <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
@@ -52,7 +52,7 @@ export function MainHero() {
                                 minPrice: s.minPrice ?? 0,
                                 maxPrice: s.maxPrice ?? 10000,
                             })}
-                            className={buttonVariants({ variant: "default" })}
+                            className={buttonVariants({ variant: "default" ,size:"lg"})}
                         >
                             Vezi colecția
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -70,22 +70,62 @@ export function MainHero() {
                                 minPrice: s.minPrice ?? 0,
                                 maxPrice: s.maxPrice ?? 10000,
                             })}
-                            className={buttonVariants({ variant: "outline" })}
+                            className={buttonVariants({ variant: "outline" ,size:"lg"})}
                         >
                             Colectii noi
                         </Link>
                     </div>
 
-                    {/* <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-                        <span className="inline-flex items-center gap-2">
-                            <Truck className="h-4 w-4 text-primary" />
-                            Transport gratuit pentru comenzi peste 500 lei
-                        </span>
-                        <span className="inline-flex items-center gap-2">
-                            <Star className="h-4 w-4 fill-primary text-primary" />
-                            4.9 / 5 din peste 2.300 de recenzii
-                        </span>
-                    </div> */}
+                    <div className="mt-16 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
+                        <div className=" flex gap-4">
+                            <Truck className="h-8 w-8 text-primary" />
+                            <div className="flex flex-col gap-">
+                                <span className="inline-flex items-center uppercase text-foreground">
+                                    Transport gratuit
+                                </span>
+                                <span className="text-xs">
+                                    in Breaza
+                                </span>
+                            </div>
+
+                            {/* <span className="inline-flex items-center gap-2">
+                                <Star className="h-4 w-4 fill-primary text-primary" />
+                                4.9 / 5 din peste 2.300 de recenzii
+                            </span> */}
+                        </div>
+                        <div className=" flex gap-4">
+                            <DollarSign className="h-8 w-8 text-primary" />
+                            <div className="flex flex-col gap-">
+                                <span className="inline-flex items-center uppercase text-foreground">
+                                    Accesibil
+                                </span>
+                                <span className="text-xs">
+                                    preturi Accesibile
+                                </span>
+                            </div>
+
+                            {/* <span className="inline-flex items-center gap-2">
+                                <Star className="h-4 w-4 fill-primary text-primary" />
+                                4.9 / 5 din peste 2.300 de recenzii
+                            </span> */}
+                        </div>
+                        <div className=" flex gap-4">
+                            <Shirt className="h-8 w-8 text-primary" />
+                            <div className="flex flex-col gap-">
+                                <span className="inline-flex items-center uppercase text-foreground">
+                                    Designe Original
+                                </span>
+                                <span className="text-xs">
+                                    creeat de .auxload
+                                </span>
+                            </div>
+
+                            {/* <span className="inline-flex items-center gap-2">
+                                <Star className="h-4 w-4 fill-primary text-primary" />
+                                4.9 / 5 din peste 2.300 de recenzii
+                            </span> */}
+                        </div>
+                    </div>
                 </div>
 
                 {/* Partea produsului — colaj imagini */}
