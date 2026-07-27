@@ -15,7 +15,7 @@ export async function sendResendEmail({
 }) {
     try {
         const { data, error } = await resend.emails.send({
-            from: 'Acme <onboarding@resend.dev>',
+            from: 'Auxload Store',
             to: [to],
             subject: subject,
             react: html,
