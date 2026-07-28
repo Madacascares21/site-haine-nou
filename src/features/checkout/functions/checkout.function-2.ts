@@ -6,14 +6,13 @@ import { eq } from "drizzle-orm";
 import type { OrderFields } from "../type";
 import ClientOrderEmail, { type OrderItemType } from "../components/order-email-template"
 // import { createElement } from 'react';
-import { sendEmail } from "#/lib/nodemailer";
 import { render } from "@react-email/components";
 import type { ReactNode } from "react";
 import { site } from "#/features/header/constant";
 import AdminOrderEmail from "../components/admin-email-tamplate";
 import { strapi } from "#/lib/strapi";
 import { updateVariantQTY } from "#/features/Products/graphql/product.query";
-import { sendResendEmail } from "#/lib/resend";
+import { sendResendEmail } from "#/lib/sendResendEmail";
 export const createOrder = async (data: OrderFields) => {
 
 
@@ -137,11 +136,13 @@ export const createOrder = async (data: OrderFields) => {
 
     }));
 
-    const info = await sendResendEmail({
-        subject: " Comanda ta a fost inregistrata cu success",
-        text: "d",
-        to: session.user.email,
-        html: clientEmailHtml
+    sendResendEmail({
+        data: {
+            subject: " Comanda ta a fost inregistrata cu success",
+            from: "Auxload Store <store@auxload.com>",
+            to: session.user.email,
+            html: clientEmailHtml
+        }
     })
     const adminEmailHtml = await render(AdminOrderEmail({
         brandName: site.name,
@@ -165,10 +166,12 @@ export const createOrder = async (data: OrderFields) => {
 
     }));
     await sendResendEmail({
-        subject: " O noua comanda a fost inregistrata",
-        text: "d",
-        to: "gd69435@gmail.com",
-        html: adminEmailHtml
+        data: {
+            subject: " O noua comanda a fost inregistrata",
+            from: "Auxload Store <store@auxload.com>",
+            to: "gd69435@gmail.com",
+            html: adminEmailHtml
+        }
     })
 
     return newOrder;
