@@ -138,7 +138,7 @@ export const createOrder = async (data: OrderFields) => {
     sendResendEmail({
         data: {
             subject: " Comanda ta a fost inregistrata cu success",
-            from: "Auxload Store <store@auxload.com>",
+            from: "Auxload Store <store@auxload-store.ro>",
             to: session.user.email,
             html: clientEmailHtml
         }
@@ -167,7 +167,7 @@ export const createOrder = async (data: OrderFields) => {
     await sendResendEmail({
         data: {
             subject: " O noua comanda a fost inregistrata",
-            from: "Auxload Store <store@auxload.com>",
+            from: "Auxload Store <store@auxload-store.ro>",
             to: "gd69435@gmail.com",
             html: adminEmailHtml
         }

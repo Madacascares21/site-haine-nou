@@ -5,6 +5,7 @@ import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { sendEmail } from "./nodemailer";
 import { db } from "@/db";
 import { drizzleSchema } from "@/db/schema";
+import { sendResendEmail } from "./sendResendEmail";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -22,12 +23,13 @@ export const auth = betterAuth({
         },
         request  // The original request object (optional)
       ) => {
-        sendEmail({
+        sendResendEmail({data: {
+            from: "Auxload Store <store@auxload-store.ro>",
           to: user.email,
           subject: "Delete your Account",
-          text: `Click the link to delete account: ${url}`,
+          html: `Click the link to delete account: ${url}`,
 
-        });
+        }});
         // Your email sending logic here
         // Example: sendEmail(data.user.email, "Verify Deletion", data.url);
       },
@@ -42,12 +44,14 @@ export const auth = betterAuth({
   plugins: [tanstackStartCookies(), magicLink({
     sendMagicLink: async ({ email, token, url, metadata }, ctx) => {
       // send email to user
-      sendEmail({
+      sendResendEmail({data:{
+            from: "Auxload Store <store@auxload-store.ro>",
+
         to: email,
         subject: "Conect to your account",
-        text: `Click the link to get started: ${url}`,
+        html: `Click the link to get started: ${url}`,
 
-      });
+      }});
     }
   })] // make sure this is the last plugin in the array
 
