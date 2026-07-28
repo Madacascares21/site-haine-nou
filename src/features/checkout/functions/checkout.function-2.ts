@@ -3,16 +3,15 @@ import { cartItems, order } from "#/db/schema";
 import { batchProductsServerFn } from "#/features/Products/functions/product.function";
 import { getSession } from "#/lib/auth.functions";
 import { eq } from "drizzle-orm";
+import ClientOrderEmail, { type OrderItemType } from "../components/order-email-template";
 import type { OrderFields } from "../type";
-import ClientOrderEmail, { type OrderItemType } from "../components/order-email-template"
 // import { createElement } from 'react';
-import { render } from "@react-email/components";
-import type { ReactNode } from "react";
 import { site } from "#/features/header/constant";
-import AdminOrderEmail from "../components/admin-email-tamplate";
-import { strapi } from "#/lib/strapi";
 import { updateVariantQTY } from "#/features/Products/graphql/product.query";
 import { sendResendEmail } from "#/lib/sendResendEmail";
+import { strapi } from "#/lib/strapi";
+import { render } from "@react-email/components";
+import AdminOrderEmail from "../components/admin-email-tamplate";
 export const createOrder = async (data: OrderFields) => {
 
 
