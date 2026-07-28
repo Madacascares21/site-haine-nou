@@ -10,19 +10,18 @@ const resendEmailSchema = z.object({
   html: z.any(),
 });
 
-export const sendResendEmail = createServerFn({ method: "POST" }).validator(resendEmailSchema)
-  .handler(async ({ data }) => {
+export const sendResendEmail = (async ({ data }: { data: z.infer<typeof resendEmailSchema> }) => {
 
-    const { data: result, error } = await resend.emails.send({
-      from: data.from,
-      to: data.to,
-      subject: data.subject,
-      html: data.html,
-    });
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    return result;
+  const { data: result, error } = await resend.emails.send({
+    from: data.from,
+    to: data.to,
+    subject: data.subject,
+    html: data.html,
   });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return result;
+});
