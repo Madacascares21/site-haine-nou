@@ -151,7 +151,7 @@ const footerPlaceholder = {
         },
         {
           label: "ANPC",
-          href: "/anpc",
+          href: "/anpcc",
         },
       ],
     },
