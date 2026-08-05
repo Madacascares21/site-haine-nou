@@ -9,41 +9,34 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TermeniSiConditiiIndexRouteImport } from './routes/termeni-si-conditii/index'
-import { Route as SignInIndexRouteImport } from './routes/sign-in/index'
-import { Route as OrdersIndexRouteImport } from './routes/orders/index'
-import { Route as CheckoutIndexRouteImport } from './routes/checkout/index'
-import { Route as ProductSlugRouteImport } from './routes/product/$slug'
-import { Route as OrdersIdRouteImport } from './routes/orders/$id'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ApiUploadRouteImport } from './routes/api/upload'
-import { Route as CCategoryChar123SubCategoryChar125RouteImport } from './routes/c/$category.{-$subCategory}'
+import { Route as CheckoutIndexRouteImport } from './routes/checkout/index'
+import { Route as OrdersIndexRouteImport } from './routes/orders/index'
+import { Route as OrdersIdRouteImport } from './routes/orders/$id'
+import { Route as PoliticaConfidentialitateIndexRouteImport } from './routes/politica-confidentialitate/index'
+import { Route as PoliticaCookieUriIndexRouteImport } from './routes/politica-cookie-uri/index'
+import { Route as PoliticaDeLivrareChar536iReturIndexRouteImport } from './routes/politica-de-livrare-și-retur/index'
+import { Route as ProductSlugRouteImport } from './routes/product/$slug'
+import { Route as SignInIndexRouteImport } from './routes/sign-in/index'
+import { Route as TermeniSiConditiiIndexRouteImport } from './routes/termeni-si-conditii/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as CCategoryChar123SubCategoryChar125RouteImport } from './routes/c/$category.{-$subCategory}'
 
-const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
-  id: '/robots.txt',
-  path: '/robots.txt',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TermeniSiConditiiIndexRoute = TermeniSiConditiiIndexRouteImport.update({
-  id: '/termeni-si-conditii/',
-  path: '/termeni-si-conditii/',
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SignInIndexRoute = SignInIndexRouteImport.update({
-  id: '/sign-in/',
-  path: '/sign-in/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrdersIndexRoute = OrdersIndexRouteImport.update({
-  id: '/orders/',
-  path: '/orders/',
+const ApiUploadRoute = ApiUploadRouteImport.update({
+  id: '/api/upload',
+  path: '/api/upload',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutIndexRoute = CheckoutIndexRouteImport.update({
@@ -51,9 +44,9 @@ const CheckoutIndexRoute = CheckoutIndexRouteImport.update({
   path: '/checkout/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductSlugRoute = ProductSlugRouteImport.update({
-  id: '/product/$slug',
-  path: '/product/$slug',
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrdersIdRoute = OrdersIdRouteImport.update({
@@ -61,9 +54,41 @@ const OrdersIdRoute = OrdersIdRouteImport.update({
   path: '/orders/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiUploadRoute = ApiUploadRouteImport.update({
-  id: '/api/upload',
-  path: '/api/upload',
+const PoliticaConfidentialitateIndexRoute =
+  PoliticaConfidentialitateIndexRouteImport.update({
+    id: '/politica-confidentialitate/',
+    path: '/politica-confidentialitate/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PoliticaCookieUriIndexRoute = PoliticaCookieUriIndexRouteImport.update({
+  id: '/politica-cookie-uri/',
+  path: '/politica-cookie-uri/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDeLivrareChar536iReturIndexRoute =
+  PoliticaDeLivrareChar536iReturIndexRouteImport.update({
+    id: '/politica-de-livrare-și-retur/',
+    path: '/politica-de-livrare-și-retur/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProductSlugRoute = ProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInIndexRoute = SignInIndexRouteImport.update({
+  id: '/sign-in/',
+  path: '/sign-in/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermeniSiConditiiIndexRoute = TermeniSiConditiiIndexRouteImport.update({
+  id: '/termeni-si-conditii/',
+  path: '/termeni-si-conditii/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CCategoryChar123SubCategoryChar125Route =
@@ -72,11 +97,6 @@ const CCategoryChar123SubCategoryChar125Route =
     path: '/c/$category/{-$subCategory}',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -86,6 +106,9 @@ export interface FileRoutesByFullPath {
   '/product/$slug': typeof ProductSlugRoute
   '/checkout/': typeof CheckoutIndexRoute
   '/orders/': typeof OrdersIndexRoute
+  '/politica-confidentialitate/': typeof PoliticaConfidentialitateIndexRoute
+  '/politica-cookie-uri/': typeof PoliticaCookieUriIndexRoute
+  '/politica-de-livrare-și-retur/': typeof PoliticaDeLivrareChar536iReturIndexRoute
   '/sign-in/': typeof SignInIndexRoute
   '/termeni-si-conditii/': typeof TermeniSiConditiiIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -99,6 +122,9 @@ export interface FileRoutesByTo {
   '/product/$slug': typeof ProductSlugRoute
   '/checkout': typeof CheckoutIndexRoute
   '/orders': typeof OrdersIndexRoute
+  '/politica-confidentialitate': typeof PoliticaConfidentialitateIndexRoute
+  '/politica-cookie-uri': typeof PoliticaCookieUriIndexRoute
+  '/politica-de-livrare-și-retur': typeof PoliticaDeLivrareChar536iReturIndexRoute
   '/sign-in': typeof SignInIndexRoute
   '/termeni-si-conditii': typeof TermeniSiConditiiIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -113,6 +139,9 @@ export interface FileRoutesById {
   '/product/$slug': typeof ProductSlugRoute
   '/checkout/': typeof CheckoutIndexRoute
   '/orders/': typeof OrdersIndexRoute
+  '/politica-confidentialitate/': typeof PoliticaConfidentialitateIndexRoute
+  '/politica-cookie-uri/': typeof PoliticaCookieUriIndexRoute
+  '/politica-de-livrare-și-retur/': typeof PoliticaDeLivrareChar536iReturIndexRoute
   '/sign-in/': typeof SignInIndexRoute
   '/termeni-si-conditii/': typeof TermeniSiConditiiIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -128,6 +157,9 @@ export interface FileRouteTypes {
     | '/product/$slug'
     | '/checkout/'
     | '/orders/'
+    | '/politica-confidentialitate/'
+    | '/politica-cookie-uri/'
+    | '/politica-de-livrare-și-retur/'
     | '/sign-in/'
     | '/termeni-si-conditii/'
     | '/api/auth/$'
@@ -141,6 +173,9 @@ export interface FileRouteTypes {
     | '/product/$slug'
     | '/checkout'
     | '/orders'
+    | '/politica-confidentialitate'
+    | '/politica-cookie-uri'
+    | '/politica-de-livrare-și-retur'
     | '/sign-in'
     | '/termeni-si-conditii'
     | '/api/auth/$'
@@ -154,6 +189,9 @@ export interface FileRouteTypes {
     | '/product/$slug'
     | '/checkout/'
     | '/orders/'
+    | '/politica-confidentialitate/'
+    | '/politica-cookie-uri/'
+    | '/politica-de-livrare-și-retur/'
     | '/sign-in/'
     | '/termeni-si-conditii/'
     | '/api/auth/$'
@@ -168,6 +206,9 @@ export interface RootRouteChildren {
   ProductSlugRoute: typeof ProductSlugRoute
   CheckoutIndexRoute: typeof CheckoutIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
+  PoliticaConfidentialitateIndexRoute: typeof PoliticaConfidentialitateIndexRoute
+  PoliticaCookieUriIndexRoute: typeof PoliticaCookieUriIndexRoute
+  PoliticaDeLivrareChar536iReturIndexRoute: typeof PoliticaDeLivrareChar536iReturIndexRoute
   SignInIndexRoute: typeof SignInIndexRoute
   TermeniSiConditiiIndexRoute: typeof TermeniSiConditiiIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -176,13 +217,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/robots.txt': {
-      id: '/robots.txt'
-      path: '/robots.txt'
-      fullPath: '/robots.txt'
-      preLoaderRoute: typeof RobotsDottxtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -190,46 +224,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/termeni-si-conditii/': {
-      id: '/termeni-si-conditii/'
-      path: '/termeni-si-conditii'
-      fullPath: '/termeni-si-conditii/'
-      preLoaderRoute: typeof TermeniSiConditiiIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sign-in/': {
-      id: '/sign-in/'
-      path: '/sign-in'
-      fullPath: '/sign-in/'
-      preLoaderRoute: typeof SignInIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/orders/': {
-      id: '/orders/'
-      path: '/orders'
-      fullPath: '/orders/'
-      preLoaderRoute: typeof OrdersIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkout/': {
-      id: '/checkout/'
-      path: '/checkout'
-      fullPath: '/checkout/'
-      preLoaderRoute: typeof CheckoutIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/product/$slug': {
-      id: '/product/$slug'
-      path: '/product/$slug'
-      fullPath: '/product/$slug'
-      preLoaderRoute: typeof ProductSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/orders/$id': {
-      id: '/orders/$id'
-      path: '/orders/$id'
-      fullPath: '/orders/$id'
-      preLoaderRoute: typeof OrdersIdRouteImport
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/upload': {
@@ -239,11 +238,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiUploadRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/c/$category/{-$subCategory}': {
-      id: '/c/$category/{-$subCategory}'
-      path: '/c/$category/{-$subCategory}'
-      fullPath: '/c/$category/{-$subCategory}'
-      preLoaderRoute: typeof CCategoryChar123SubCategoryChar125RouteImport
+    '/checkout/': {
+      id: '/checkout/'
+      path: '/checkout'
+      fullPath: '/checkout/'
+      preLoaderRoute: typeof CheckoutIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/$id': {
+      id: '/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof OrdersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-confidentialitate/': {
+      id: '/politica-confidentialitate/'
+      path: '/politica-confidentialitate'
+      fullPath: '/politica-confidentialitate/'
+      preLoaderRoute: typeof PoliticaConfidentialitateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-cookie-uri/': {
+      id: '/politica-cookie-uri/'
+      path: '/politica-cookie-uri'
+      fullPath: '/politica-cookie-uri/'
+      preLoaderRoute: typeof PoliticaCookieUriIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-livrare-și-retur/': {
+      id: '/politica-de-livrare-și-retur/'
+      path: '/politica-de-livrare-și-retur'
+      fullPath: '/politica-de-livrare-și-retur/'
+      preLoaderRoute: typeof PoliticaDeLivrareChar536iReturIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$slug': {
+      id: '/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/product/$slug'
+      preLoaderRoute: typeof ProductSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in/': {
+      id: '/sign-in/'
+      path: '/sign-in'
+      fullPath: '/sign-in/'
+      preLoaderRoute: typeof SignInIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termeni-si-conditii/': {
+      id: '/termeni-si-conditii/'
+      path: '/termeni-si-conditii'
+      fullPath: '/termeni-si-conditii/'
+      preLoaderRoute: typeof TermeniSiConditiiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {
@@ -251,6 +306,13 @@ declare module '@tanstack/react-router' {
       path: '/api/auth/$'
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/c/$category/{-$subCategory}': {
+      id: '/c/$category/{-$subCategory}'
+      path: '/c/$category/{-$subCategory}'
+      fullPath: '/c/$category/{-$subCategory}'
+      preLoaderRoute: typeof CCategoryChar123SubCategoryChar125RouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -264,6 +326,10 @@ const rootRouteChildren: RootRouteChildren = {
   ProductSlugRoute: ProductSlugRoute,
   CheckoutIndexRoute: CheckoutIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
+  PoliticaConfidentialitateIndexRoute: PoliticaConfidentialitateIndexRoute,
+  PoliticaCookieUriIndexRoute: PoliticaCookieUriIndexRoute,
+  PoliticaDeLivrareChar536iReturIndexRoute:
+    PoliticaDeLivrareChar536iReturIndexRoute,
   SignInIndexRoute: SignInIndexRoute,
   TermeniSiConditiiIndexRoute: TermeniSiConditiiIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
