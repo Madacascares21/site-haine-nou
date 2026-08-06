@@ -1,12 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/contact/')({
-    component: RouteComponent,
+    component: Page,
 })
 
-function RouteComponent() {
-    return <div>Hello "/contact/"!</div>
-}
+
 import { Mail, MapPin, Phone } from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
