@@ -31,7 +31,7 @@ function Home() {
       <HeroCarousel />
       <CategoryBannerSection />
       <NewProducts />
-      <BrandStorySection/>
+      <BrandStorySection />
       <FeaturedProducts />
       <BestPrice />
       <CollaborateSection />

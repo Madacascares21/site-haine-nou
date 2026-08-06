@@ -14,6 +14,7 @@ import Header from '#/features/header/components/header'
 import { site } from '#/features/header/constant'
 import type { QueryClient } from '@tanstack/react-query'
 import { seo } from '#/lib/seo'
+import { CookieNotice } from '#/components/popover-cookie'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -171,6 +172,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className='w-full  min-h-screen  flex flex-col'>
 
         <Header />
+              <CookieNotice />
+
         <Toaster />
         <CartAuthSync />
 

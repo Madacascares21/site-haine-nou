@@ -5,7 +5,7 @@ export const Route = createFileRoute('/robots.txt')({
     server: {
         handlers: {
             GET: async () => {
-                const siteUrl = "http://localhost:3000"
+                const siteUrl = "https://auxload-store.ro"
 
                 const robots = `# robots.txt for ${siteUrl}
 

@@ -18,6 +18,8 @@ export const sendResendEmail = (async ({ data }: { data: z.infer<typeof resendEm
     subject: data.subject,
     html: data.html,
   });
+  // const error = { message: "Resend email sending is currently disabled." };
+  // const result = { message: "Resend email sending is currently disabled." };
 
   if (error) {
     throw new Error(error.message);
