@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ApiUploadRouteImport } from './routes/api/upload'
 import { Route as CheckoutIndexRouteImport } from './routes/checkout/index'
+import { Route as ContactIndexRouteImport } from './routes/contact/index'
+import { Route as DespreNoiIndexRouteImport } from './routes/despre-noi/index'
 import { Route as OrdersIndexRouteImport } from './routes/orders/index'
 import { Route as OrdersIdRouteImport } from './routes/orders/$id'
 import { Route as PoliticaConfidentialitateIndexRouteImport } from './routes/politica-confidentialitate/index'
@@ -42,6 +44,16 @@ const ApiUploadRoute = ApiUploadRouteImport.update({
 const CheckoutIndexRoute = CheckoutIndexRouteImport.update({
   id: '/checkout/',
   path: '/checkout/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactIndexRoute = ContactIndexRouteImport.update({
+  id: '/contact/',
+  path: '/contact/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DespreNoiIndexRoute = DespreNoiIndexRouteImport.update({
+  id: '/despre-noi/',
+  path: '/despre-noi/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrdersIndexRoute = OrdersIndexRouteImport.update({
@@ -105,6 +117,8 @@ export interface FileRoutesByFullPath {
   '/orders/$id': typeof OrdersIdRoute
   '/product/$slug': typeof ProductSlugRoute
   '/checkout/': typeof CheckoutIndexRoute
+  '/contact/': typeof ContactIndexRoute
+  '/despre-noi/': typeof DespreNoiIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/politica-confidentialitate/': typeof PoliticaConfidentialitateIndexRoute
   '/politica-cookie-uri/': typeof PoliticaCookieUriIndexRoute
@@ -121,6 +135,8 @@ export interface FileRoutesByTo {
   '/orders/$id': typeof OrdersIdRoute
   '/product/$slug': typeof ProductSlugRoute
   '/checkout': typeof CheckoutIndexRoute
+  '/contact': typeof ContactIndexRoute
+  '/despre-noi': typeof DespreNoiIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/politica-confidentialitate': typeof PoliticaConfidentialitateIndexRoute
   '/politica-cookie-uri': typeof PoliticaCookieUriIndexRoute
@@ -138,6 +154,8 @@ export interface FileRoutesById {
   '/orders/$id': typeof OrdersIdRoute
   '/product/$slug': typeof ProductSlugRoute
   '/checkout/': typeof CheckoutIndexRoute
+  '/contact/': typeof ContactIndexRoute
+  '/despre-noi/': typeof DespreNoiIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/politica-confidentialitate/': typeof PoliticaConfidentialitateIndexRoute
   '/politica-cookie-uri/': typeof PoliticaCookieUriIndexRoute
@@ -156,6 +174,8 @@ export interface FileRouteTypes {
     | '/orders/$id'
     | '/product/$slug'
     | '/checkout/'
+    | '/contact/'
+    | '/despre-noi/'
     | '/orders/'
     | '/politica-confidentialitate/'
     | '/politica-cookie-uri/'
@@ -172,6 +192,8 @@ export interface FileRouteTypes {
     | '/orders/$id'
     | '/product/$slug'
     | '/checkout'
+    | '/contact'
+    | '/despre-noi'
     | '/orders'
     | '/politica-confidentialitate'
     | '/politica-cookie-uri'
@@ -188,6 +210,8 @@ export interface FileRouteTypes {
     | '/orders/$id'
     | '/product/$slug'
     | '/checkout/'
+    | '/contact/'
+    | '/despre-noi/'
     | '/orders/'
     | '/politica-confidentialitate/'
     | '/politica-cookie-uri/'
@@ -205,6 +229,8 @@ export interface RootRouteChildren {
   OrdersIdRoute: typeof OrdersIdRoute
   ProductSlugRoute: typeof ProductSlugRoute
   CheckoutIndexRoute: typeof CheckoutIndexRoute
+  ContactIndexRoute: typeof ContactIndexRoute
+  DespreNoiIndexRoute: typeof DespreNoiIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
   PoliticaConfidentialitateIndexRoute: typeof PoliticaConfidentialitateIndexRoute
   PoliticaCookieUriIndexRoute: typeof PoliticaCookieUriIndexRoute
@@ -243,6 +269,20 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout/'
       preLoaderRoute: typeof CheckoutIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact/': {
+      id: '/contact/'
+      path: '/contact'
+      fullPath: '/contact/'
+      preLoaderRoute: typeof ContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/despre-noi/': {
+      id: '/despre-noi/'
+      path: '/despre-noi'
+      fullPath: '/despre-noi/'
+      preLoaderRoute: typeof DespreNoiIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/orders/': {
@@ -325,6 +365,8 @@ const rootRouteChildren: RootRouteChildren = {
   OrdersIdRoute: OrdersIdRoute,
   ProductSlugRoute: ProductSlugRoute,
   CheckoutIndexRoute: CheckoutIndexRoute,
+  ContactIndexRoute: ContactIndexRoute,
+  DespreNoiIndexRoute: DespreNoiIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
   PoliticaConfidentialitateIndexRoute: PoliticaConfidentialitateIndexRoute,
   PoliticaCookieUriIndexRoute: PoliticaCookieUriIndexRoute,
