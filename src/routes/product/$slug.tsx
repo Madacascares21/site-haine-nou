@@ -52,53 +52,57 @@ export const Route = createFileRoute('/product/$slug')({
     //     ]
     // }),
     head: ({ loaderData, params }) => {
-
-        const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.slug}`
-        const standardSeo = seo({
-            title: `${loaderData?.name} | ${site.name}`,
-            description: loaderData?.seo?.description ??
-                `${loaderData?.name}. ${loaderData?.description?.slice(0, 150)}`,
-            image: `https://cdn.auxload-store.ro${loaderData?.seo?.media?.url}`,
-            canonical,
-            type: "product",
-        })
-
-        // Dacă nu avem date din loader, returnăm doar SEO standard
-        if (!loaderData) return standardSeo
-
-        // 2. Construim structura JSON-LD folosind datele tale din loaderData
-        const jsonLd = {
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: loaderData.name,
-            image: `https://cdn.auxload-store.ro${loaderData.seo?.media?.url}`,
-            description: loaderData.seo?.description || loaderData.description,
-            sku: loaderData.variants[0].name,
-            offers: {
-                '@type': 'Offer',
-                url: canonical,
-                priceCurrency: 'RON', // Modifică în USD/EUR în funcție de magazin
-                price: loaderData.pricing.final_price,
-                itemCondition: 'https://schema.org',
-                availability: loaderData.variants[0].available
-                    ? 'https://schema.org'
-                    : 'https://schema.org',
-            },
-        }
-
-        const meta = Array.isArray(standardSeo) ? standardSeo : standardSeo.meta || []
-        const links = Array.isArray(standardSeo) ? [] : standardSeo.links || []
-
         return {
             meta: [
-                ...meta,
-                {
-                    tagName: 'script',
-                    type: 'application/ld+json',
-                    innerHTML: JSON.stringify(jsonLd),
-                },
+                { title: `${loaderData?.name}` },
+                { content: `${loaderData?.seo?.description}`, name: "description" },
+                // Open Graph
+                { property: 'og:title', content: loaderData?.name },
+                { property: 'og:description', content: loaderData?.seo?.description },
+                { property: 'og:image', content: loaderData?.seo?.media?.url },
+                { property: 'og:type', content: 'article' },
+                // Twitter Card
+                { name: 'twitter:card', content: 'summary_large_image' },
+                { name: 'twitter:title', content: loaderData?.name },
+                { name: 'twitter:description', content: loaderData?.seo?.description },
+                { name: 'twitter:image', content: loaderData?.seo?.media?.url },
+
             ],
-            links,
+            links: [
+                { rel: 'canonical', href: `${import.meta.env.VITE_SITE_URL}/product/${params.slug}` }
+            ],
+            scripts: [
+                {
+                    type: 'application/ld+json',
+                    children: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'Product',
+                        name: loaderData?.name,
+                        description: loaderData?.seo?.description,
+                        image: loaderData?.seo?.media?.url,
+                        sku: loaderData?.variants[0]?.name,
+
+                        brand: {
+                            '@type': 'Brand',
+                            name: ".auxload",
+                        },
+
+                        color: loaderData?.variants[0]?.color,
+                        size: loaderData?.variants[0]?.size,
+
+                        offers: {
+                            '@type': 'Offer',
+                            url: `${import.meta.env.VITE_SITE_URL}/product/${params.slug}`,
+                            priceCurrency: 'RON',
+                            price: loaderData?.pricing.final_price,
+                            availability: true
+                                ? 'https://schema.org/InStock'
+                                : 'https://schema.org/OutOfStock',
+                            itemCondition: 'https://schema.org/NewCondition',
+                        },
+                    }),
+                }
+            ]
         }
     },
     staleTime: 10_000 * 6 * 5
@@ -173,12 +177,12 @@ function RouteComponent() {
                                     size="lg"
                                     className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
                                     onClick={() => {
-                                        addItem(product.documentId!, selectedVariant.documentId!,selectedVariant.qty)
+                                        addItem(product.documentId!, selectedVariant.documentId!, selectedVariant.qty)
                                         openCart()
                                     }}
                                     disabled={!!(selectedVariant.qty <= 0)}
                                 >
-                                    {selectedVariant.qty <= 0 ? "Produs Indisponibil" :  "Cumpara Acum!"}
+                                    {selectedVariant.qty <= 0 ? "Produs Indisponibil" : "Cumpara Acum!"}
                                 </Button>
                             </div>
 

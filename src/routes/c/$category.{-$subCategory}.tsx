@@ -34,82 +34,122 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
     return res.products_connection
   },
   staleTime: 10_000 * 6 * 5, // 5 minutes
+  // head: ({ loaderData, params }) => {
+  //   let description: string = ""
+  //   let media: any = ""
+  //   let categoryName: string = ""
+
+  //   // 1. Logica ta existentă de identificare a categoriei
+  //   const category = generatedData.links.categories_connection.nodes.find(c => params.category === c.name)
+  //   const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}` // Înlocuit 'null' string cu '' pentru siguranță în URL
+
+  //   if (!category) {
+  //     description = ""
+  //     media = ""
+  //     categoryName = params.subCategory ? slugToTitle(params.subCategory) : slugToTitle(params.category)
+  //   } else if (params.subCategory === undefined) {
+  //     description = category.seo?.description ?? ""
+  //     media = category.seo?.media.url ?? ""
+  //     categoryName = slugToTitle(category.name)
+  //   } else {
+  //     const subCategory = category.sub_categories_connection.nodes?.find(c2 => c2.name === params.subCategory)
+  //     description = subCategory?.seo?.description ?? ""
+  //     media = subCategory?.seo?.media.url ?? ""
+  //     categoryName = subCategory ? slugToTitle(subCategory.name) : slugToTitle(params.subCategory)
+  //   }
+
+  //   // 2. Generăm tagurile SEO standard folosind funcția ta
+  //   const seoTags = seo({
+  //     title: `${categoryName} | ${site.name}`,
+  //     description,
+  //     image: media,
+  //     canonical,
+  //   })
+
+  //   // Dacă loaderData nu are produse sau nu este disponibil, returnăm doar meta tags
+  //   if (!loaderData || !loaderData.nodes) {
+  //     return { ...seoTags }
+  //   }
+
+  //   // 3. Construim structura JSON-LD pentru ItemList bazată pe produsele din pagină
+  //   const jsonLd = {
+  //     '@context': 'https://schema.org',
+  //     '@type': 'ItemList',
+  //     name: categoryName,
+  //     description: description,
+  //     url: canonical,
+  //     // Mapăm array-ul de produse din loaderData
+  //     itemListElement: loaderData.nodes.map((product, index: number) => ({
+  //       '@type': 'ListItem',
+  //       position: index + 1,
+  //       item: {
+  //         '@type': 'Product',
+  //         name: product.name,
+  //         url: `${import.meta.env.VITE_SITE_URL}/product/${product.slug}`,
+  //         image: product.variants[0].media[0].url,
+  //         offers: {
+  //           '@type': 'Offer',
+  //           priceCurrency: 'RON', // Modifică în funcție de moneda magazinului tău
+  //           price: product.pricing.final_price,
+  //         }
+  //       }
+  //     }))
+  //   }
+
+  //   // 4. Returnăm structura nativă pentru proprietatea `head` din TanStack
+  //   return {
+  //     ...seoTags,
+  //     scripts: [
+  //       {
+  //         type: 'application/ld+json',
+  //         children: JSON.stringify(jsonLd),
+  //       },
+  //     ],
+  //   }
+
+
+  //   // staleTime: 0,
+  // }
   head: ({ loaderData, params }) => {
-    let description: string = ""
-    let media: any = ""
-    let categoryName: string = ""
-
-    // 1. Logica ta existentă de identificare a categoriei
-    const category = generatedData.links.categories_connection.nodes.find(c => params.category === c.name)
-    const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}` // Înlocuit 'null' string cu '' pentru siguranță în URL
-
-    if (!category) {
-      description = ""
-      media = ""
-      categoryName = params.subCategory ? slugToTitle(params.subCategory) : slugToTitle(params.category)
-    } else if (params.subCategory === undefined) {
-      description = category.seo?.description ?? ""
-      media = category.seo?.media.url ?? ""
-      categoryName = slugToTitle(category.name)
-    } else {
-      const subCategory = category.sub_categories_connection.nodes?.find(c2 => c2.name === params.subCategory)
-      description = subCategory?.seo?.description ?? ""
-      media = subCategory?.seo?.media.url ?? ""
-      categoryName = subCategory ? slugToTitle(subCategory.name) : slugToTitle(params.subCategory)
+    const title = params.subCategory ? `${params.subCategory} ${params.category} ` : params.category
+    const description = (): string => {
+      if (params.subCategory) {
+        return loaderData?.nodes[0].sub_categories[0].seo.description || ""
+      } else {
+        return loaderData?.nodes[0].categories[0].seo.description || ""
+      }
     }
-
-    // 2. Generăm tagurile SEO standard folosind funcția ta
-    const seoTags = seo({
-      title: `${categoryName} | ${site.name}`,
-      description,
-      image: media,
-      canonical,
-    })
-
-    // Dacă loaderData nu are produse sau nu este disponibil, returnăm doar meta tags
-    if (!loaderData || !loaderData.nodes) {
-      return { ...seoTags }
+    const media = (): string => {
+      if (params.subCategory) {
+        return loaderData?.nodes[0].sub_categories[0].seo.media.url || ""
+      } else {
+        return loaderData?.nodes[0].categories[0].seo.media.url || ""
+      }
     }
+    const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}`
 
-    // 3. Construim structura JSON-LD pentru ItemList bazată pe produsele din pagină
-    const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      name: categoryName,
-      description: description,
-      url: canonical,
-      // Mapăm array-ul de produse din loaderData
-      itemListElement: loaderData.nodes.map((product, index: number) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'Product',
-          name: product.name,
-          url: `${import.meta.env.VITE_SITE_URL}/product/${product.slug}`,
-          image: product.variants[0].media[0].url,
-          offers: {
-            '@type': 'Offer',
-            priceCurrency: 'RON', // Modifică în funcție de moneda magazinului tău
-            price: product.pricing.final_price,
-          }
-        }
-      }))
-    }
 
-    // 4. Returnăm structura nativă pentru proprietatea `head` din TanStack
     return {
-      ...seoTags,
-      scripts: [
-        {
-          type: 'application/ld+json',
-          children: JSON.stringify(jsonLd),
-        },
+      meta: [
+        { title: `${title}` },
+        { content: `${description()}`, name: "description" },
+        // Open Graph
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: description() },
+        { property: 'og:image', content: media() },
+        { property: 'og:type', content: 'article' },
+        // Twitter Card
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:description', content: description() },
+        { name: 'twitter:image', content: media() },
+
+      ],
+      links: [
+        { rel: 'canonical', href: canonical }
       ],
     }
-
-
-    // staleTime: 0,
-  }
+  },
 })
 
 function RouteComponent() {

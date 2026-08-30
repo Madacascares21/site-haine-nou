@@ -10,9 +10,15 @@ import { getSitemap } from '#/lib/sitemap'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
+
   plugins: [devtools(),
-  generateSitemap(await getSitemap()),
-  tailwindcss(), tanstackStart(), nitroV2Plugin({
+
+  tailwindcss(), tanstackStart({
+    sitemap: {
+      enabled: true,
+      host: import.meta.env.VITE_SITE_URL,
+    }
+  }), nitroV2Plugin({
     preset: "node-server"
   }), viteReact()],
 })
