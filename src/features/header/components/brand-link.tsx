@@ -8,7 +8,7 @@ const BrandLink = () => {
         <Link to="/"
         // className="text-md` tracking-[0.35em]"
         >
-            <img  className="fill-accent text-red-200 " width="100" alt={site.name}  src="/logo-favicon.svg" />
+            <img  className="fill-accent text-red-200 " width="120" alt={site.name}  src="/logo.svg" />
         </Link >)
 }
 

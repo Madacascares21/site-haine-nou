@@ -10,7 +10,7 @@ export const contactUsServerFn = createServerFn().validator(contactFormSchema).h
     sendResendEmail({
         data: {
             from: data.email,
-            to: "store@auxload-store.ro",
+            to: "contact@auxload-store.ro",
             subject: data.subject,
             html: `<p>${data.message}</p>`
         }
