@@ -9,14 +9,16 @@ const config = defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [devtools(),
 
-  tailwindcss(), tanstackStart(
-    {
-      sitemap: {
-        enabled: true,
-        host: "https://auxload-store.ro",
-      }
-    }
-  ), nitroV2Plugin({
+  tailwindcss(), tanstackStart({
+    prerender: {
+      enabled: true,
+      crawlLinks: true, // Discovers all linkable pages
+    },
+    sitemap: {
+      enabled: true,
+      host: 'https://myapp.com',
+    },
+  }), , nitroV2Plugin({
     preset: "node-server"
   }), viteReact()],
 })
