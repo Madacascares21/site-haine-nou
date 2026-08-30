@@ -1,15 +1,13 @@
+import dotenv from "dotenv";
+import "dotenv/config";
+import fs from "fs";
 import { gql } from "graphql-request";
 import path from "path";
-import fs from "fs";
-import "dotenv/config";
-import dotenv from "dotenv";
 
 dotenv.config();
 
 
-import { GraphQLClient } from 'graphql-request'
-import type { ProductResponseData } from "#/features/Products/type";
-import { GET_SITEMAP_PRODUCTS } from "#/features/Products/graphql/product.query";
+import { GraphQLClient } from 'graphql-request';
 
 export const strapi = new GraphQLClient(
   process.env.VITE_STRAPI_GRAPHQL_URL!,
@@ -123,34 +121,14 @@ const query = gql`query ExampleQuery {
 
 
 const generateData = await strapi.request<ApiResponse>(query)
-const sitemapProducts = async () => {
-  const res = await strapi.request<ProductResponseData>(GET_SITEMAP_PRODUCTS)
 
-  return res.products_connection.nodes.map(p => {
-    const productDate = new Date(p.updatedAt).getTime();
-    const variantDates = p.variants.map(v => new Date(v.updatedAt).getTime());
-
-    const latestVariantDate = variantDates.length
-      ? Math.max(...variantDates)
-      : 0;
-
-    const lastmod = new Date(Math.max(productDate, latestVariantDate));
-
-    return {
-      slug: p.slug,
-      updateAt: lastmod.toISOString(),
-    };
-  })
-
-}
 
 
 export const getConstants = async () => {
   return Promise.all([
     generateData,
-    sitemapProducts()
   ]).then((res) => {
-    return { links: res[0], sitemapProducts: res[1] }
+    return { links: res[0] }
   })
 
 
@@ -195,7 +173,6 @@ async function writeDataToFile() {
 
   const tsContent =
     `export const generatedData = ${JSON.stringify(data, null, 2)} as const;\n
-     export const productSitemap = ${JSON.stringify(data.sitemapProducts, null, 2)} as const;\n
     `;
 
   await fs.promises.writeFile(outputFile, tsContent, "utf8");

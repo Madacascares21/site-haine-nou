@@ -15,7 +15,7 @@ export const Route = createFileRoute('/orders/')({
     },
     head: () => {
 
-        const canonical = `${import.meta.env.VITE_SITE_URL}/order`
+        const canonical = `https://auxload-store.ro/order`
         return seo({
             title: `Checkout | ${site.name}`,
             description: "Aici poti vedea comenzile tale!",

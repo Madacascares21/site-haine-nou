@@ -41,7 +41,6 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
 
   //   // 1. Logica ta existentă de identificare a categoriei
   //   const category = generatedData.links.categories_connection.nodes.find(c => params.category === c.name)
-  //   const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}` // Înlocuit 'null' string cu '' pentru siguranță în URL
 
   //   if (!category) {
   //     description = ""
@@ -85,7 +84,6 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
   //       item: {
   //         '@type': 'Product',
   //         name: product.name,
-  //         url: `${import.meta.env.VITE_SITE_URL}/product/${product.slug}`,
   //         image: product.variants[0].media[0].url,
   //         offers: {
   //           '@type': 'Offer',
@@ -126,7 +124,7 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
         return loaderData?.nodes[0].categories[0].seo.media.url || ""
       }
     }
-    const canonical = `${import.meta.env.VITE_SITE_URL}/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}`
+    const canonical = `https://auxload-store.ro/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}`
 
 
     return {

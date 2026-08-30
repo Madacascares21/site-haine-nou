@@ -10,15 +10,16 @@ import { getSitemap } from '#/lib/sitemap'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
-
   plugins: [devtools(),
-
-  tailwindcss(), tanstackStart({
-    sitemap: {
-      enabled: true,
-      host: import.meta.env.VITE_SITE_URL,
+  generateSitemap(await getSitemap()),
+  tailwindcss(), tanstackStart(
+    {
+      sitemap: {
+        enabled: true,
+        host: "https://auxload-store.ro",
+      }
     }
-  }), nitroV2Plugin({
+  ), nitroV2Plugin({
     preset: "node-server"
   }), viteReact()],
 })

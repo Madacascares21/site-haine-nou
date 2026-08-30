@@ -7,7 +7,7 @@ export const Route = createFileRoute('/checkout/')({
     pendingComponent: () => <CheckoutSkeleton />,
     head: () => {
 
-        const canonical = `${import.meta.env.VITE_SITE_URL}/checkout`
+        const canonical = `https://auxload-store.ro/checkout`
         return seo({
             title: `Checkout | ${site.name}`,
             description: "Aici comanda produsele aflate in cosul de cumparaturi",

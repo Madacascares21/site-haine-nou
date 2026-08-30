@@ -29,7 +29,7 @@ export const Route = createFileRoute('/orders/$id')({
     },
     head: ({ params }) => {
 
-        const canonical = `${import.meta.env.VITE_SITE_URL}/order/${params.id}`
+        const canonical = `https://auxload-store.ro/order/${params.id}`
         return seo({
             title: `Numărul comenzii: ${params.id} | ${site.name}`,
             description: `Comanda numărul ${params.id} de pe site!`,

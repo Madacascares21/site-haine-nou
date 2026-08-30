@@ -17,7 +17,7 @@ export const Route = createFileRoute('/sign-in/')({
 
   head: () => {
   
-          const canonical = `${import.meta.env.VITE_SITE_URL}/sign-in`
+          const canonical = `https://auxload-store.ro/sign-in`
           return seo({
               title: `Sign-in | ${site.name}`,
               description: "Aici comanda produsele aflate in cosul de cumparaturi",

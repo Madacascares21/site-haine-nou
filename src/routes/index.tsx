@@ -12,7 +12,7 @@ import { createFileRoute } from '@tanstack/react-router'
 export const Route = createFileRoute('/')({
   head: () => {
 
-    const canonical = `${import.meta.env.VITE_SITE_URL}`
+    const canonical = "https://auxload-store.ro"
     return seo({
       title: `Acasa | ${site.name}`,
       description: "Auxload Store – haine Gen Z cu imprimeuri trendy și stil modern. Livrare gratuită în Breaza.",

@@ -69,7 +69,7 @@ export const Route = createFileRoute('/product/$slug')({
 
             ],
             links: [
-                { rel: 'canonical', href: `${import.meta.env.VITE_SITE_URL}/product/${params.slug}` }
+                { rel: 'canonical', href: `https://auxload-store.ro/product/${params.slug}` }
             ],
             scripts: [
                 {
@@ -92,7 +92,7 @@ export const Route = createFileRoute('/product/$slug')({
 
                         offers: {
                             '@type': 'Offer',
-                            url: `${import.meta.env.VITE_SITE_URL}/product/${params.slug}`,
+                            url: `https://auxload-store.ro/product/${params.slug}`,
                             priceCurrency: 'RON',
                             price: loaderData?.pricing.final_price,
                             availability: true
