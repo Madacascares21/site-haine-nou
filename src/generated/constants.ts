@@ -257,39 +257,4 @@ export const generatedData = {
   ]
 } as const;
 
-     export const productSitemap = [
-  {
-    "slug": "tricou-imprimeu-inger-2",
-    "updateAt": "2026-06-30T12:56:19.776Z"
-  },
-  {
-    "slug": "tricou-imorimeu-inger",
-    "updateAt": "2026-06-30T13:53:18.280Z"
-  },
-  {
-    "slug": "tricou-imprimeu-gta-vi",
-    "updateAt": "2026-06-30T13:53:29.542Z"
-  },
-  {
-    "slug": "tricou-imprimeu-metal-face-misterious",
-    "updateAt": "2026-07-05T04:49:44.143Z"
-  },
-  {
-    "slug": "tricou-imprimeu-breaza",
-    "updateAt": "2026-06-30T14:06:38.554Z"
-  },
-  {
-    "slug": "tricou-imprimeu-tom-si-jerry-black-xs",
-    "updateAt": "2026-06-30T14:06:57.799Z"
-  },
-  {
-    "slug": "tricou-imprimeu-relax",
-    "updateAt": "2026-06-30T14:07:11.631Z"
-  },
-  {
-    "slug": "tricou-mds-vara",
-    "updateAt": "2026-07-05T08:37:47.852Z"
-  }
-] as const;
-
     
