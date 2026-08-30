@@ -16,7 +16,7 @@ const config = defineConfig({
     },
     sitemap: {
       enabled: true,
-      host: 'https://myapp.com',
+      host: 'https://auxload-store.ro',
     },
   }), , nitroV2Plugin({
     preset: "node-server"
