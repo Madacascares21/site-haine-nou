@@ -93,9 +93,23 @@ seo{
       }
       categories {
         name
+        seo {
+          name
+          description
+          media{
+            url
+          }
+        }
       }
       sub_categories {
         name
+        seo {
+          name
+          description
+          media{
+            url
+          }
+        }
       }
       description
       updatedAt

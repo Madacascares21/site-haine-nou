@@ -109,44 +109,34 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
   //   // staleTime: 0,
   // }
   head: ({ loaderData, params }) => {
-    const title = params.subCategory ? `${params.subCategory} ${params.category} ` : params.category
-    const description = (): string => {
-      if (params.subCategory) {
-        return loaderData?.nodes[0].sub_categories[0].seo.description || ""
-      } else {
-        return loaderData?.nodes[0].categories[0].seo.description || ""
-      }
-    }
-    const media = (): string => {
-      if (params.subCategory) {
-        return loaderData?.nodes[0].sub_categories[0].seo.media.url || ""
-      } else {
-        return loaderData?.nodes[0].categories[0].seo.media.url || ""
-      }
-    }
+    const isSubCategory = params.subCategory !== undefined
+    const title = isSubCategory ? `${params.subCategory} ${params.category} ` : params.category
+    const description = isSubCategory ? loaderData?.nodes[0].sub_categories[0].seo.description : loaderData?.nodes[0].categories[0].seo.description
+    const media = isSubCategory ? loaderData?.nodes[0].sub_categories[0].seo.media.url : loaderData?.nodes[0].categories[0].seo.media.url
     const canonical = `https://auxload-store.ro/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}`
-
-
     return {
       meta: [
         { title: `${title}` },
-        { content: `${description()}`, name: "description" },
+        { content: `${description}`, name: "description" },
         // Open Graph
         { property: 'og:title', content: title },
-        { property: 'og:description', content: description() },
-        { property: 'og:image', content: media() },
+        { property: 'og:description', content: description },
+        { property: 'og:image', content: media },
         { property: 'og:type', content: 'article' },
         // Twitter Card
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: title },
-        { name: 'twitter:description', content: description() },
-        { name: 'twitter:image', content: media() },
+        { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: media },
 
       ],
       links: [
         { rel: 'canonical', href: canonical }
       ],
     }
+
+
+
   },
 })
 
