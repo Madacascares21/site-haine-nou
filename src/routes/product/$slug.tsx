@@ -81,6 +81,7 @@ export const Route = createFileRoute('/product/$slug')({
                         description: loaderData?.seo?.description,
                         image: `https://cdn.auxload-store.ro${loaderData?.seo?.media?.url}`,
                         sku: loaderData?.variants[0]?.name,
+                        category: loaderData?.categories[0]?.name,
 
                         brand: {
                             '@type': 'Brand',
@@ -98,7 +99,6 @@ export const Route = createFileRoute('/product/$slug')({
                             availability: true
                                 ? 'https://schema.org/InStock'
                                 : 'https://schema.org/OutOfStock',
-                            itemCondition: 'https://schema.org/NewCondition',
                         },
                     }),
                 }

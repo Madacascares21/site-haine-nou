@@ -134,6 +134,33 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
       links: [
         { rel: 'canonical', href: canonical }
       ],
+      scripts: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: title,
+            description: description,
+            url: canonical,
+            itemListElement: loaderData?.nodes.map((product, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              item: {
+                '@type': 'Product',
+                name: product.name,
+                image: `https://cdn.auxload-store.ro${product.variants?.[0]?.media?.[0]?.url}`,
+                url: `https://auxload-store.ro/product/${product.slug}`,
+                offers: {
+                  '@type': 'Offer',
+                  priceCurrency: 'RON', // Modifică în funcție de moneda magazinului tău
+                  price: product.pricing.final_price,
+                }
+              }
+            }))
+          })
+        }
+      ]
     }
 
 
