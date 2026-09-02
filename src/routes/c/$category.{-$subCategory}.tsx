@@ -112,7 +112,8 @@ export const Route = createFileRoute('/c/$category/{-$subCategory}')({
     const isSubCategory = params.subCategory !== undefined
     const title = isSubCategory ? `${params.subCategory} ${params.category} ` : params.category
     const description = isSubCategory ? loaderData?.nodes[0].sub_categories[0].seo.description : loaderData?.nodes[0].categories[0].seo.description
-    const media = isSubCategory ? loaderData?.nodes[0].sub_categories[0].seo.media.url : loaderData?.nodes[0].categories[0].seo.media.url
+    const media = isSubCategory ? `https://cdn.auxload-store.ro${loaderData?.nodes[0].sub_categories[0].seo.media.url}` : `https://cdn.auxload-store.ro${loaderData?.nodes[0].categories[0].seo.media.url}`
+    console.log(media, "media")
     const canonical = `https://auxload-store.ro/product/${params.category}${params.subCategory ? `/${params.subCategory}` : ''}`
     return {
       meta: [

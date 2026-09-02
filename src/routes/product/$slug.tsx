@@ -59,13 +59,13 @@ export const Route = createFileRoute('/product/$slug')({
                 // Open Graph
                 { property: 'og:title', content: loaderData?.name },
                 { property: 'og:description', content: loaderData?.seo?.description },
-                { property: 'og:image', content: loaderData?.seo?.media?.url },
+                { property: 'og:image', content: `https://cdn.auxload-store.ro${loaderData?.seo?.media?.url}` },
                 { property: 'og:type', content: 'article' },
                 // Twitter Card
                 { name: 'twitter:card', content: 'summary_large_image' },
                 { name: 'twitter:title', content: loaderData?.name },
                 { name: 'twitter:description', content: loaderData?.seo?.description },
-                { name: 'twitter:image', content: loaderData?.seo?.media?.url },
+                { name: 'twitter:image', content: `https://cdn.auxload-store.ro${loaderData?.seo?.media?.url}` },
 
             ],
             links: [
@@ -79,7 +79,7 @@ export const Route = createFileRoute('/product/$slug')({
                         '@type': 'Product',
                         name: loaderData?.name,
                         description: loaderData?.seo?.description,
-                        image: loaderData?.seo?.media?.url,
+                        image: `https://cdn.auxload-store.ro${loaderData?.seo?.media?.url}`,
                         sku: loaderData?.variants[0]?.name,
 
                         brand: {
@@ -87,8 +87,8 @@ export const Route = createFileRoute('/product/$slug')({
                             name: ".auxload",
                         },
 
-                        color: loaderData?.variants[0]?.color,
-                        size: loaderData?.variants[0]?.size,
+                        color: loaderData?.variants[0]?.color.name,
+                        size: loaderData?.variants[0]?.size.name,
 
                         offers: {
                             '@type': 'Offer',
